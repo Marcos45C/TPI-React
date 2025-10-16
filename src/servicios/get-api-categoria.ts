@@ -1,16 +1,18 @@
-import type { CategoryInterfaz } from "../interfaces/general-Interfaces";
-import { apiCategory } from "../url/mercado.api";
+import type { CategoryInterfaz } from "../api/interfaces/general-Interfaces";
+import { apiCategory } from "../api/url/refugioHuellitas";
 
 
 export const getCategoris = async (): Promise<CategoryInterfaz[]> => {
   // hacemos la petición con fetch
-  const response = await fetch(`${apiCategory}`, {  
+  const respuesta = await fetch(`${apiCategory}`, {  
+    method:'GET',
           headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer div", 
+            "Authorization": "Bearer refugioHuellitas", 
           },  
         });
-  const data = await response.json();
+        if (!respuesta.ok) throw new Error(`Error ${respuesta.status}`);
+  const data = await respuesta.json();
   // console.log(data);
   return data.map((variable: any) => ({
     title: variable.title,

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { apiProduct } from "./api/url/mercado.api";
+import { apiProduct } from "./api/url/refugioHuellitas";
 import type { ProducInterface } from "./api/interfaces/general-Interfaces";
 
 
 export const Producto = () => {
   const [productos, setProductos] = useState<ProducInterface[]>([]);
 
-  const getCategory = async () => {
+  const getProductos = async () => {
     try {
       const response = await fetch(`${apiProduct}`, {
         method: "GET",
         headers: {
-          Authorization: `Bearer div`, // token o user
+          Authorization: `Bearer refugioHuellitas`, // token o user
           "Content-Type": "application/json",
         },
       });
@@ -20,7 +20,7 @@ export const Producto = () => {
       }
       const data = await response.json();
       setProductos(data); // guardo el estado
-      console.log("GET data:", data);
+      // console.log("GET data:", data);
       // console.log(id);
     } catch (error) {
       console.error("Error al obtener categorías:", error);
@@ -28,7 +28,7 @@ export const Producto = () => {
   };
 
   useEffect(() => {
-    getCategory();
+    getProductos();
   }, [])
 
 //   useEffect(() => {

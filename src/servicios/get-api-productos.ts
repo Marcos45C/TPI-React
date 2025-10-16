@@ -1,16 +1,19 @@
-import type {  ProducInterface } from "../interfaces/general-Interfaces";
-import {  apiProduct } from "../url/mercado.api";
+
+import type { ProducInterface } from "../api/interfaces/general-Interfaces";
+import { apiProduct } from "../api/url/refugioHuellitas";
 
 
 export const getProductis = async (): Promise<ProducInterface[]> => {
   // hacemos la petición con fetch
-    const response = await fetch(`${apiProduct}`, {  
+    const respuesta = await fetch(`${apiProduct}`, {  
+      method:'GET',
         headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer div", 
+            "Authorization": "Bearer refugioHuellitas", 
             },  
         });
-    const data = await response.json();
+      if (!respuesta.ok) throw new Error(`Error ${respuesta.status}`);
+    const data = await respuesta.json();
   // console.log(data);
     return data.map((variable: any) => ({
     title: variable.title,
