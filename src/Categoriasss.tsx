@@ -1,51 +1,43 @@
-import { useEffect, useState } from "react";
-// import { baseApi} from "./api/url/mercado.api";
+import {  useEffect, useState } from "react";
 import type { CategoryInterfaz } from "./api/interfaces/general-Interfaces";
-import { apiCategory } from "./api/url/refugioHuellitas";
 
-export const Categoriasss = () => {
 
-const [categories, setCategories] = useState<CategoryInterfaz[]>([]);
+interface Props {
+  categories: CategoryInterfaz[];
+  onCategorySelect: (id: number | null) => void;
 
-  const getCategories = async ()=> {
-    try {
-      const response = await fetch(`${apiCategory}`, {  
-        method: "GET",
-        headers: {
-          "Accept": "application/json",
-          "Authorization": "Bearer refugioHuellitas", 
-        },  
-      });
-      if (!response.ok) {
-        throw new Error(`Error ${response.status}`);
-      }
-      const data = await response.json();
-      setCategories(data);
-      // console.log(data);  
-    } catch (error) {
-      console.error("error al obtener las categorías:", error);
-    }
-  };
+}
 
-  useEffect(() => {
-    getCategories();
-  }, []);//esto hace q al iniciar el componente, llame a getCategories y haga la peticion
+export function Categoriasss({ categories,onCategorySelect  }: Props) {
+  // const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+
+
+  // const handleClick = (cat: CategoryInterfaz) => {
+  //   setSelectedCategoryId(cat.id);
+  //   console.log("Categoría seleccionada:", cat.title);
+  // };
+
+  
 
   return (
-    <div>
-    
-      <h2>categorías</h2>
-      <ul>
-        {categories.length > 0 ? (
-          categories.map((cat) => (
-            <li key={cat.id}>
-              {cat.title}
-            </li>
-          ))
-        ) : (
-          <p>error...</p>
-        )}
-      </ul>
+  <div className="w-full hover-scroll flex space-x-4 pb-4">
+      {categories.map((cat) => (
+        <div
+          key={cat.id}
+          className={`min-w-[200px] p-0 bg-gray-100 rounded-lg shadow text-center transition cursor-pointer hover:scale-105
+            `}
+          onClick={() => onCategorySelect(cat.id)}
+        >
+          <div className="transition-transform duration-200">
+            <img
+              src={`http://161.35.104.211:8000${cat.picture}`}
+              alt={cat.title || "no hay"}
+              className="w-full h-48 object-cover mx-auto mix-blend-multiply brightness-110 mb-0 rounded"
+            />
+          </div>
+          <h2 className="text-xl font-bold text-red-700">{cat.title}</h2>
+        </div>
+      ))}
     </div>
   );
-};
+}
