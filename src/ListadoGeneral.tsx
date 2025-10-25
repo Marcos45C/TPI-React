@@ -4,25 +4,21 @@ import { getCategoris } from "./servicios/get-api-categoria";
 import { getProductis } from "./servicios/get-api-productos";
 //todas las interfaces
 import type { CategoryInterfaz, ProducInterface } from "./api/interfaces/general-Interfaces";
-import { Categoriasss } from "./Categoriasss";
+
+
+import { Categoriasss } from "./componentes/Categorias";
+import {  Productos } from "./componentes/Productos";
+
 
 
 
 
 export const ListadoGeneral = () => {
     const [categoriass, setCategoriass] = useState<CategoryInterfaz[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
-
-
     const [productoss, setProductoss] = useState<ProducInterface[]>([]);
 
-      // Esta función la pasamos al hijo:
-  const handleCategorySelect = (id: number | null) => {
-    console.log("Categoría seleccionada:", id);
-    setSelectedCategory(id);
-  };
-
-
+    const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  
     useEffect(() => {
         // const fetchCategorias = async () => {
         //     const categoriesapi = await getCategoris();
@@ -34,11 +30,25 @@ export const ListadoGeneral = () => {
         // };
         getCategoris()
             .then(setCategoriass)//si da bien y es lo mismo de hacer asi .then((data) => setCategoriass(data))
-            .catch((e) => console.error("Error al cargar categorías:", e));
+            .catch((i) => console.error("error al cargar categorías:", i));
         getProductis()
             .then(setProductoss)//
-            .catch((e) => console.error("Error al cargar productos:", e));
+            .catch((i) => console.error("error al cargar productos:", i));
     }, []);
+
+    // Esta función la pasamos al hijo:
+  const handleCategorySelect = (id: number | null) => {
+    
+    if (selectedCategory==id) {
+      console.log("toco la misma categoria");
+      setSelectedCategory(null);
+    }else{
+      console.log("Categoría seleccionada:", id);
+    setSelectedCategory(id);
+    }
+   
+  };
+
 
     return (
     <div className="p-4">
@@ -50,13 +60,17 @@ export const ListadoGeneral = () => {
       onCategorySelect={handleCategorySelect}
       />
 
-      {selectedCategory && (
+      {/* {selectedCategory && (
         <p className="mt-4 text-gray-600">
           Mostrando productos de la categoría ID: {selectedCategory}
         </p>
-        )}
+        )} */}
 
-        
+      <Productos
+        productos={productoss}
+        selectedCategory={selectedCategory}
+      />
+
     </div>
   );
 };

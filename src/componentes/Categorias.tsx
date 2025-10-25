@@ -1,5 +1,5 @@
-import {  useEffect, useState } from "react";
-import type { CategoryInterfaz } from "./api/interfaces/general-Interfaces";
+
+import type { CategoryInterfaz } from "../api/interfaces/general-Interfaces";
 
 
 interface Props {

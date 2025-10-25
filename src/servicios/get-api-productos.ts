@@ -19,7 +19,7 @@ export const getProductis = async (): Promise<ProducInterface[]> => {
     title: variable.title,
     description:variable.description,
     precio:variable.price,
-    categoriaid:variable.category_id,
+    categoria_id:variable.category_id,
     id:variable.id,
     picture:variable.picture
     }));
