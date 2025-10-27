@@ -4,10 +4,14 @@ import './main.css'
 // import { Listado } from './Listado'
 // import { Producto } from './Producto'
 import { ListadoGeneral } from './ListadoGeneral'
+import { CartProvider } from './context/CartContext' // <- agregue el contexto 
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    {/*envuelve la App*/}
+    <CartProvider>
     <ListadoGeneral />
+    </CartProvider>
   </StrictMode>,
 )

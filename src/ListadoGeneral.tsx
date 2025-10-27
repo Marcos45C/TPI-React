@@ -9,14 +9,12 @@ import type { CategoryInterfaz, ProducInterface } from "./api/interfaces/general
 import { Categoriasss } from "./componentes/Categorias";
 import {  Productos } from "./componentes/Productos";
 
-
-
-
+import { Carrito } from "./componentes/Carrito";
+import { CartToggleButton } from "./componentes/CartToggleButton";
 
 export const ListadoGeneral = () => {
     const [categoriass, setCategoriass] = useState<CategoryInterfaz[]>([]);
     const [productoss, setProductoss] = useState<ProducInterface[]>([]);
-
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   
     useEffect(() => {
@@ -51,9 +49,15 @@ export const ListadoGeneral = () => {
 
 
     return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Listado General de Categorías</h2>
+    <div className="p-4 max-w-6xl mx-auto"> {/*centre el contenedor un poco*/}
+      {/* Btn flotante del carrito */}
+      <CartToggleButton/>
 
+       {/**Aca va el carrito */}
+      <Carrito/>
+
+      <h2 className="text-2xl font-bold mb-4">Listado General de Categorías</h2>
+     
       {/* Acá mostramos el componente de categorías */}
       <Categoriasss 
       categories={categoriass} //aca le mando los productos

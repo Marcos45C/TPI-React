@@ -1,6 +1,7 @@
 
 
 import type { ProducInterface } from "../api/interfaces/general-Interfaces";
+import { useCart } from '../context/CartContext'; //importe el hook
 
 interface Props{
 productos:ProducInterface[];
@@ -9,6 +10,7 @@ selectedCategory: number | null;
 
 export const Productos = ({productos,selectedCategory }:Props) => { 
 
+  const { addToCart } = useCart(); //Obtiene la funcion del contexto
  
   // filtrar productos según la categoría seleccionada
   const filteredProducts = selectedCategory
@@ -22,8 +24,10 @@ export const Productos = ({productos,selectedCategory }:Props) => {
           {filteredProducts.map((prod) => (
             <li
               key={prod.id}
-              className="bg-gray-100 rounded-lg shadow hover:scale-105 transition-transform cursor-pointer p-4"
+              //quite el hover:scale-105 y cursor-pointer del li para dejárselo al botón
+              className="bg-gray-100 rounded-lg shadow transition-transform p-4"
             >
+            <div>
               <img
                 src={`http://161.35.104.211:8000${prod.pictures}`}
                 alt={prod.title}
@@ -33,6 +37,13 @@ export const Productos = ({productos,selectedCategory }:Props) => {
                 {prod.title}
               </h3>
               <p className="text-gray-600">{prod.description}</p>
+              </div>
+              {/**Agregue el botón*/}
+              <button onClick={() => addToCart(prod)}
+              className="mt-3 w-full bg-red-600 text-while p-2 rounded hover:bg-red-700 transitions-colors font-semibold"
+              >
+                Agregar al carro
+              </button>
             </li>
           ))}
         </ul>
