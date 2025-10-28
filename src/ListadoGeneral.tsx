@@ -18,14 +18,6 @@ export const ListadoGeneral = () => {
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   
     useEffect(() => {
-        // const fetchCategorias = async () => {
-        //     const categoriesapi = await getCategoris();
-        //     setCategoriass(categoriesapi);
-        // };
-         // const fetchProductos = async () => {
-        //     const productosapi = await getProductis();
-        //     setProductoss(productosapi);
-        // };
         getCategoris()
             .then(setCategoriass)//si da bien y es lo mismo de hacer asi .then((data) => setCategoriass(data))
             .catch((i) => console.error("error al cargar categorías:", i));
@@ -44,13 +36,14 @@ export const ListadoGeneral = () => {
       console.log("Categoría seleccionada:", id);
     setSelectedCategory(id);
     }
-   
   };
 
 
     return (
     <div className="p-4 max-w-6xl mx-auto"> {/*centre el contenedor un poco*/}
-      {/* Btn flotante del carrito */}
+    
+ 
+    {/* Btn flotante del carrito */}
       <CartToggleButton/>
 
        {/**Aca va el carrito */}
@@ -63,12 +56,6 @@ export const ListadoGeneral = () => {
       categories={categoriass} //aca le mando los productos
       onCategorySelect={handleCategorySelect}
       />
-
-      {/* {selectedCategory && (
-        <p className="mt-4 text-gray-600">
-          Mostrando productos de la categoría ID: {selectedCategory}
-        </p>
-        )} */}
 
       <Productos
         productos={productoss}

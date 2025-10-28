@@ -23,9 +23,9 @@ export function Categoriasss({ categories,onCategorySelect  }: Props) {
   <div className="w-full hover-scroll flex space-x-4 pb-4">
       {categories.map((cat) => (
         <div
+          className="min-w-[200px] p-0 bg-gray-100 rounded-lg shadow text-center transition cursor-pointer hover:scale-105"
           key={cat.id}
-          className={`min-w-[200px] p-0 bg-gray-100 rounded-lg shadow text-center transition cursor-pointer hover:scale-105
-            `}
+            
           onClick={() => onCategorySelect(cat.id)}
         >
           <div className="transition-transform duration-200">
