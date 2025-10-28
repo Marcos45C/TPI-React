@@ -9,7 +9,7 @@ export const getProductis = async (): Promise<ProducInterface[]> => {
       method:'GET',
         headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer refugioHuellitas", 
+            "Authorization": "Bearer div", 
             },  
         });
       if (!respuesta.ok) throw new Error(`Error ${respuesta.status}`);
@@ -21,6 +21,6 @@ export const getProductis = async (): Promise<ProducInterface[]> => {
     precio:variable.price,
     categoria_id:variable.category_id,
     id:variable.id,
-    picture:variable.picture
+    pictures:variable.pictures
     }));
 };

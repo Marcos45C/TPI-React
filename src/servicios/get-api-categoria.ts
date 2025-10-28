@@ -8,7 +8,7 @@ export const getCategoris = async (): Promise<CategoryInterfaz[]> => {
     method:'GET',
           headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer refugioHuellitas", 
+            "Authorization": "Bearer div", 
           },  
         });
         if (!respuesta.ok) throw new Error(`Error ${respuesta.status}`);
