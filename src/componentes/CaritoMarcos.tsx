@@ -18,7 +18,7 @@ export const CaritoMarcos = ({compraProducto}:Props) => {
   return (
     <>
   <div>
-    <h1>a</h1>
+    
   </div>
     
     </>

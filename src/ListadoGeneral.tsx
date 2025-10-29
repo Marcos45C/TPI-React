@@ -59,7 +59,6 @@ export const ListadoGeneral = () => {
       <Carrito/>
 
       <h2 className="text-2xl font-bold mb-4">Listado General de Categorías</h2>
-     
       {/* Acá mostramos el componente de categorías */}
       <Categoriasss 
       categories={categoriass} //aca le mando los productos
