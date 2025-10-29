@@ -1,17 +1,15 @@
-
-
 import type { ProducInterface } from "../api/interfaces/general-Interfaces";
-import { useCart } from '../context/CartContext'; //importe el hook
+import { useCart } from "../context/CartContext"; //importe el hook
+import imgDefecto from "../imagenes/logoCenter.png";
 
-interface Props{
-productos:ProducInterface[];
-selectedCategory: number | null;
+interface Props {
+  productos: ProducInterface[];
+  selectedCategory: number | null;
 }
 
-export const Productos = ({productos,selectedCategory }:Props) => { 
-
+export const Productos = ({ productos, selectedCategory }: Props) => {
   const { addToCart } = useCart(); //Obtiene la funcion del contexto
- 
+
   // filtrar productos según la categoría seleccionada
   const filteredProducts = selectedCategory
     ? productos.filter((prod) => prod.categoria_id === selectedCategory)
@@ -29,7 +27,11 @@ export const Productos = ({productos,selectedCategory }:Props) => {
             >
               <div className="relative">
                 <img
-                  src={`http://161.35.104.211:8000${prod.pictures}`}
+                  src={
+                    prod.pictures && prod.pictures.length > 0
+                      ? `http://161.35.104.211:8000${prod.pictures[0]}`
+                      : imgDefecto // agrege la imagen por defecto
+                  }
                   alt={prod.title}
                   className="aspect-square w-full mix-blend-multiply brightness-110 object-cover"
                 />
@@ -37,8 +39,8 @@ export const Productos = ({productos,selectedCategory }:Props) => {
               <div className="flex-1 p-3 bg-white flex flex-col justify-between">
                 <h2 className="text-xl font-bold mb-1">
                   <a
-                    // href={`ficha.html?producto=${prod.id}`}
-                    // className="hover:text-red-600"
+                  // href={`ficha.html?producto=${prod.id}`}
+                  // className="hover:text-red-600"
                   >
                     {prod.title}
                   </a>
