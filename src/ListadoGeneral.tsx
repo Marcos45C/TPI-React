@@ -11,11 +11,16 @@ import {  Productos } from "./componentes/Productos";
 
 import { Carrito } from "./componentes/Carrito";
 import { CartToggleButton } from "./componentes/CartToggleButton";
+import { CaritoMarcos } from "./componentes/CaritoMarcos";
+
 
 export const ListadoGeneral = () => {
     const [categoriass, setCategoriass] = useState<CategoryInterfaz[]>([]);
     const [productoss, setProductoss] = useState<ProducInterface[]>([]);
+    
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+
+    const [compraProducto, setCompraProducto] = useState<ProducInterface| null>(null);
   
     useEffect(() => {
         getCategoris()
@@ -26,9 +31,8 @@ export const ListadoGeneral = () => {
             .catch((i) => console.error("error al cargar productos:", i));
     }, []);
 
-    // Esta función la pasamos al hijo:
-  const handleCategorySelect = (id: number | null) => {
-    
+    // esta funcion la pasamos al hijo
+  const handleCategorySelect = (id: number | null) => {    
     if (selectedCategory==id) {
       console.log("toco la misma categoria");
       setSelectedCategory(null);
@@ -37,6 +41,11 @@ export const ListadoGeneral = () => {
     setSelectedCategory(id);
     }
   };
+
+  //funcion para recibir el producto seleccionado al comprar
+  const comprarProductos =(producto:ProducInterface)=>{
+    setCompraProducto(producto);
+  }
 
 
     return (
@@ -60,6 +69,11 @@ export const ListadoGeneral = () => {
       <Productos
         productos={productoss}
         selectedCategory={selectedCategory}
+        compraProduc={comprarProductos}
+      />
+
+      <CaritoMarcos
+      compraProducto={compraProducto}
       />
 
     </div>

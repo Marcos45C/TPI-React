@@ -1,14 +1,15 @@
 import type { ProducInterface } from "../api/interfaces/general-Interfaces";
-import { useCart } from "../context/CartContext"; //importe el hook
+// import { useCart } from "../context/CartContext"; //importe el hook
 import imgDefecto from "../imagenes/logoCenter.png";
 
 interface Props {
   productos: ProducInterface[];
   selectedCategory: number | null;
+   compraProduc: (producto: ProducInterface) => void; // pra devolver todo el producto entero
 }
 
-export const Productos = ({ productos, selectedCategory }: Props) => {
-  const { addToCart } = useCart(); //Obtiene la funcion del contexto
+export const Productos = ({ productos, selectedCategory,compraProduc }: Props) => {
+  // const { addToCart } = useCart(); //Obtiene la funcion del contexto
 
   // filtrar productos según la categoría seleccionada
   const filteredProducts = selectedCategory
@@ -52,7 +53,8 @@ export const Productos = ({ productos, selectedCategory }: Props) => {
                   </div>
                 )}
                 <button
-                  onClick={() => addToCart(prod)}
+                
+                  onClick={() => compraProduc(prod)}
                   className="mt-3 bg-gray-200 text-black px-3 py-2 rounded border border-stone-300 hover:bg-red-700 hover:text-white hover:border-transparent transition duration-300"
                 >
                   Agregar al carrito
