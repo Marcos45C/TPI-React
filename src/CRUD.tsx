@@ -22,12 +22,12 @@ export const CRUD = () => {
         CRUD
       </h1>
 
-    
+      {/* categotiass */}
       <section className="mb-12">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-semibold text-gray-700">Categorías</h2>
           <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition">
-            Nueva Categoría
+            nueva Categoría
           </button>
         </div>
 
@@ -36,9 +36,9 @@ export const CRUD = () => {
             <thead className="bg-gray-100 text-gray-700 uppercase text-sm">
               <tr>
                 <th className="py-3 px-4 border-b text-left">ID</th>
-                <th className="py-3 px-4 border-b text-left">Título</th>
-                <th className="py-3 px-4 border-b text-left">Descripción</th>
-                <th className="py-3 px-4 border-b text-center">Acciones</th>
+                <th className="py-3 px-4 border-b text-left">TITULO</th>
+                <th className="py-3 px-4 border-b text-left">DESCRIPCION</th>
+                <th className="py-3 px-4 border-b text-center">ACCIONES</th>
               </tr>
             </thead>
             <tbody>
@@ -81,17 +81,17 @@ export const CRUD = () => {
             <thead className="bg-gray-100 text-gray-700 uppercase text-sm">
               <tr>
                 <th className="py-3 px-4 border-b text-left">ID</th>
-                <th className="py-3 px-4 border-b text-left">Título</th>
-                <th className="py-3 px-4 border-b text-left">Categoría</th>
+                <th className="py-3 px-4 border-b text-left">TITLE</th>
+                <th className="py-3 px-4 border-b text-left">CATEGORIA QUE PERTENECEN</th>
                 <th className="py-3 px-4 border-b text-left">Precio</th>
-                <th className="py-3 px-4 border-b text-center">Acciones</th>
+                <th className="py-3 px-4 border-b text-center">ACCIONE</th>
               </tr>
             </thead>
             <tbody>
               {productoss.map((prod) => (
                 <tr
                   key={prod.id}
-                  className="hover:bg-gray-50 transition text-gray-800"
+                  className="hover:bg-gray-50 transition text-gray-800 "
                 >
                   <td className="py-3 px-4 border-b">{prod.id}</td>
                   <td className="py-3 px-4 border-b font-semibold">

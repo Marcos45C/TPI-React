@@ -37,7 +37,7 @@ export const ListadoGeneral = () => {
       console.log("toco la misma categoria");
       setSelectedCategory(null);
     }else{
-      console.log("Categoría seleccionada:", id);
+      console.log("toco la categoria con id ", id);
     setSelectedCategory(id);
     }
   };
@@ -53,20 +53,20 @@ export const ListadoGeneral = () => {
     
  
     {/* Btn flotante del carrito */}
-      <CartToggleButton/>
+      {/* <CartToggleButton/> */}
 
        {/**Aca va el carrito */}
-      <Carrito/>
+      {/* <Carrito/> */}
 
       <h2 className="text-2xl font-bold mb-4">Listado General de Categorías</h2>
       {/* Acá mostramos el componente de categorías */}
       <Categoriasss 
-      categories={categoriass} //aca le mando los productos
+      categories={categoriass} //aca le mando los categorias 
       onCategorySelect={handleCategorySelect}
       />
 
       <Productos
-        productos={productoss}
+        productos={productoss} //aca le mando los productos 
         selectedCategory={selectedCategory}
         compraProduc={comprarProductos}
       />
