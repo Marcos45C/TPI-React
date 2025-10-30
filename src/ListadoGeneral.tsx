@@ -22,6 +22,8 @@ export const ListadoGeneral = () => {
 
     const [compraProducto, setCompraProducto] = useState<ProducInterface| null>(null);
   
+
+
     useEffect(() => {
         getCategoris()
             .then(setCategoriass)//si da bien y es lo mismo de hacer asi .then((data) => setCategoriass(data))
@@ -44,7 +46,7 @@ export const ListadoGeneral = () => {
 
   //funcion para recibir el producto seleccionado al comprar
   const comprarProductos =(producto:ProducInterface)=>{
-    setCompraProducto(producto);
+    setCompraProducto({...producto}); //esto lo puse asi porque tuve que reenderizar los productos para que se actualicen
   }
 
 
@@ -74,6 +76,7 @@ export const ListadoGeneral = () => {
       <CaritoMarcos
       compraProducto={compraProducto}
       />
+    
 
     </div>
   );

@@ -1,41 +1,137 @@
 import { useEffect, useState } from "react";
-import type { ProducInterface } from "../api/interfaces/general-Interfaces"
+import type { ProducInterface } from "../api/interfaces/general-Interfaces";
 
-interface Props{
-  compraProducto:ProducInterface | null;
+interface Props {
+  compraProducto: ProducInterface | null;
 }
 
-export const CaritoMarcos = ({compraProducto}:Props) => {
-const [contador, setContador] = useState(0)
+export const CaritoMarcos = ({ compraProducto }: Props) => {
+  const [carrito, setCarrito] = useState<ProducInterface[]>([]);
+  const [abierto, setAbierto] = useState(false);
 
+  // cada vez que llega un producto nuevo, lo agregamos
   useEffect(() => {
-  console.log(compraProducto?.price);
-  setContador(contador+1);
-  console.log(contador);
-  
-  }, [compraProducto])
-  
-  const ver =()=>{
-    console.log("toque");
-    
-  }
-  return (
-    <button
-      onClick={ver}
-      className="fixed top-5 right-5 z-50 p-3 bg-red-600 text-white rounded-full shadow-lg hover:bg-red-700 transition"
-      aria-label="Abrir carrito"
-    >
-      
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25V5.625c0-.621.504-1.125 1.125-1.125h9.75c.621 0 1.125.504 1.125 1.125v8.625M7.5 14.25h11.25M16.5 18a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM8.25 18a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-      </svg>
+    if (compraProducto) {
+      setCarrito((carrito) => {
+        return [...carrito, compraProducto];
+      });
+    }
+  }, [compraProducto]);
 
-    
-      {contador>0 &&(
-        <span className="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 bg-gray-800 text-xs font-bold text-white rounded-full">
-          {contador}
-        </span>
-      ) }
-    </button>
+  // Alternar apertura del carrito
+  const toggleCarrito = () => setAbierto(!abierto);
+
+  // eliminar un producto del carrito
+  const eliminarProducto = (id: number) => {
+    setCarrito((prev) => prev.filter((p) => p.id !== id));
+  };
+
+  // vaciado de  carrito
+  const limpiarCarrito = () => setCarrito([]);
+
+  return (
+    <>
+      {/* BOTÓN DEL CARRITO */}
+      <button
+        onClick={toggleCarrito}
+        className="fixed top-5 right-5 z-50 p-3 bg-red-600 text-white rounded-full shadow-lg hover:bg-red-700 transition"
+        aria-label="Abrir carrito"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 
+            14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c.51 
+            0 .955.343 1.087.835l.383 1.437M7.5 
+            14.25V5.625c0-.621.504-1.125 
+            1.125-1.125h9.75c.621 0 1.125.504 
+            1.125 1.125v8.625M7.5 14.25h11.25M16.5 
+            18a1.5 1.5 0 11-3 0 1.5 1.5 0 
+            013 0zM8.25 18a1.5 1.5 0 11-3 
+            0 1.5 1.5 0 013 0z"
+          />
+        </svg>
+
+        {carrito.length > 0 && (
+          <span className="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 bg-gray-800 text-xs font-bold text-white rounded-full">
+            {carrito.length}
+          </span>
+        )}
+      </button>
+
+      {/* OVERLAY OSCURO */}
+      {abierto && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40"
+          onClick={toggleCarrito}
+        ></div>
+      )}
+
+      {/* PANEL DEL CARRITO */}
+      <div
+        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-xl z-50
+                    p-6 flex flex-col transition-transform duration-300 ease-in-out
+                    ${abierto ? "translate-x-0" : "translate-x-full"}`}
+      >
+        {/* HEADER */}
+        <div className="flex justify-between items-center border-b pb-4 mb-4">
+          <h2 className="text-2xl font-bold text-red-700">Carrito 🛒</h2>
+          <button onClick={toggleCarrito} className="text-gray-500 hover:text-gray-800">
+            ✕
+          </button>
+        </div>
+
+        {/* CONTENIDO */}
+        {carrito.length > 0 ? (
+          <ul className="flex-1 overflow-y-auto divide-y divide-gray-200">
+            {carrito.map((item) => (
+              <li key={item.id} className="flex justify-between items-center py-3">
+                <div className="flex items-center space-x-4">
+                  <img
+                    src={`http://161.35.104.211:8000${item.pictures}`}
+                    alt={item.title}
+                    className="w-14 h-14 object-cover rounded"
+                  />
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
+                    <p className="text-gray-500 text-sm">${item.price}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => eliminarProducto(item.id)}
+                  className="text-red-500 hover:text-red-700 text-sm font-medium"
+                >
+                  Quitar
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="flex-1 flex items-center justify-center">
+            <p className="text-gray-500">Tu carrito está vacío.</p>
+          </div>
+        )}
+
+        {/* FOOTER */}
+        {carrito.length > 0 && (
+          <div className="border-t pt-4 mt-4">
+            <button
+              onClick={limpiarCarrito}
+              className="w-full bg-gray-700 text-white p-2 rounded hover:bg-gray-800 transition"
+            >
+              Vaciar carrito
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 };

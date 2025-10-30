@@ -9,12 +9,15 @@ interface Props {
 }
 
 export const Productos = ({ productos, selectedCategory,compraProduc }: Props) => {
-  // const { addToCart } = useCart(); //Obtiene la funcion del contexto
+
 
   // filtrar productos según la categoría seleccionada
   const filteredProducts = selectedCategory
     ? productos.filter((prod) => prod.categoria_id === selectedCategory)
     : productos; // si no hay seleccion, muestra todos
+
+    
+
 
   return (
     <div className="mt-8">
