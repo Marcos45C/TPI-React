@@ -8,12 +8,7 @@ import { CRUD } from './CRUD'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/*envuelve la App*/}
-    
     <ListadoGeneral />
-   
-    
-    
     {/* <CRUD/> */}
   </StrictMode>,
 )

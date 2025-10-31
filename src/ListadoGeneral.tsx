@@ -5,12 +5,9 @@ import { getProductis } from "./servicios/get-api-productos";
 //todas las interfaces
 import type { CategoryInterfaz, ProducInterface } from "./api/interfaces/general-Interfaces";
 
-
 import { Categoriasss } from "./componentes/Categorias";
 import {  Productos } from "./componentes/Productos";
 
-import { Carrito } from "./componentes/Carrito";
-import { CartToggleButton } from "./componentes/CartToggleButton";
 import { CaritoMarcos } from "./componentes/CaritoMarcos";
 
 
@@ -33,6 +30,7 @@ export const ListadoGeneral = () => {
             .catch((i) => console.error("error al cargar productos:", i));
     }, []);
 
+    
     // esta funcion la pasamos al hijo
   const handleCategorySelect = (id: number | null) => {    
     if (selectedCategory==id) {
@@ -51,33 +49,21 @@ export const ListadoGeneral = () => {
 
 
     return (
+
     <div className="p-4 max-w-6xl mx-auto"> {/*centre el contenedor un poco*/}
-    
- 
-    {/* Btn flotante del carrito */}
-      {/* <CartToggleButton/> */}
-
-       {/**Aca va el carrito */}
-      {/* <Carrito/> */}
-
       <h2 className="text-2xl font-bold mb-4">Listado General de Categorías</h2>
-      {/* Acá mostramos el componente de categorías */}
       <Categoriasss 
       categories={categoriass} //aca le mando los categorias 
       onCategorySelect={handleCategorySelect}
       />
-
       <Productos
         productos={productoss} //aca le mando los productos 
         selectedCategory={selectedCategory}
         compraProduc={comprarProductos}
       />
-
       <CaritoMarcos
       compraProducto={compraProducto}
       />
-    
-
     </div>
   );
 };
