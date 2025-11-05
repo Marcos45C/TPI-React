@@ -21,7 +21,7 @@ export const CRUD = () => {
       <h1 className="text-3xl font-bold mb-8 text-gray-800 text-center">
         CRUD
       </h1>
-
+    
       {/* categotiass */}
       <section className="mb-12">
         <div className="flex justify-between items-center mb-4">

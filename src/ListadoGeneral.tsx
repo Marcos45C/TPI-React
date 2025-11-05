@@ -13,14 +13,13 @@ import { CaritoMarcos } from "./componentes/CaritoMarcos";
 
 export const ListadoGeneral = () => {
     const [categoriass, setCategoriass] = useState<CategoryInterfaz[]>([]);
+    
     const [productoss, setProductoss] = useState<ProducInterface[]>([]);
     
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
     const [compraProducto, setCompraProducto] = useState<ProducInterface| null>(null);
   
-
-
     useEffect(() => {
         getCategoris()
             .then(setCategoriass)//si da bien y es lo mismo de hacer asi .then((data) => setCategoriass(data))
@@ -49,7 +48,6 @@ export const ListadoGeneral = () => {
 
 
     return (
-
     <div className="p-4 max-w-6xl mx-auto"> {/*centre el contenedor un poco*/}
       <h2 className="text-2xl font-bold mb-4">Listado General de Categorías</h2>
       <Categoriasss 
