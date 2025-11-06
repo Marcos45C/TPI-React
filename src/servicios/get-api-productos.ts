@@ -18,7 +18,7 @@ export const getProductis = async (): Promise<ProducInterface[]> => {
     return data.map((variable: any) => ({
     title: variable.title,
     description:variable.description,
-    precio:variable.price,
+    price:variable.price,
     categoria_id:variable.category_id,
     id:variable.id,
     pictures:variable.pictures

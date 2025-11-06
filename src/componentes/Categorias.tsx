@@ -9,13 +9,7 @@ interface Props {
 }
 
 export function Categoriasss({ categories,onCategorySelect  }: Props) {
-  // const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
 
-
-  // const handleClick = (cat: CategoryInterfaz) => {
-  //   setSelectedCategoryId(cat.id);
-  //   console.log("Categoría seleccionada:", cat.title);
-  // };
 
   
 
@@ -25,7 +19,6 @@ export function Categoriasss({ categories,onCategorySelect  }: Props) {
         <div
           className="min-w-[200px] p-0 bg-gray-100 rounded-lg shadow text-center transition cursor-pointer hover:scale-105"
           key={cat.id}
-            
           onClick={() => onCategorySelect(cat.id)}
         >
           <div className="transition-transform duration-200">

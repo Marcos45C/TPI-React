@@ -1,19 +1,27 @@
+import {  useNavigate } from "react-router-dom";
 import type { ProducInterface } from "../api/interfaces/general-Interfaces";
-import { useCart } from "../context/CartContext"; //importe el hook
 import imgDefecto from "../imagenes/logoCenter.png";
 
 interface Props {
   productos: ProducInterface[];
   selectedCategory: number | null;
+   compraProduc: (producto: ProducInterface) => void; // pra devolver todo el producto entero
 }
 
-export const Productos = ({ productos, selectedCategory }: Props) => {
-  const { addToCart } = useCart(); //Obtiene la funcion del contexto
+export const Productos = ({ productos, selectedCategory,compraProduc }: Props) => {
+
 
   // filtrar productos según la categoría seleccionada
   const filteredProducts = selectedCategory
     ? productos.filter((prod) => prod.categoria_id === selectedCategory)
     : productos; // si no hay seleccion, muestra todos
+
+    //aca es para navevar entre componente y llevarle el id y que el componente haga una fetch
+    const navigate = useNavigate();
+    const irADetalle = (id: number) => {
+    navigate(`/detalle/${id}`); 
+  };
+
 
   return (
     <div className="mt-8">
@@ -25,7 +33,7 @@ export const Productos = ({ productos, selectedCategory }: Props) => {
               key={prod.id}
               className="max-w-96 shadow-lg bg-gray-100 h-full flex flex-col rounded-lg overflow-hidden transition hover:scale-[1.02]"
             >
-              <div className="relative">
+              <div className="relative  cursor-pointer" onClick={() => irADetalle(prod.id)}>
                 <img
                   src={
                     prod.pictures && prod.pictures.length > 0
@@ -38,12 +46,7 @@ export const Productos = ({ productos, selectedCategory }: Props) => {
               </div>
               <div className="flex-1 p-3 bg-white flex flex-col justify-between">
                 <h2 className="text-xl font-bold mb-1">
-                  <a
-                  // href={`ficha.html?producto=${prod.id}`}
-                  // className="hover:text-red-600"
-                  >
                     {prod.title}
-                  </a>
                 </h2>
                 <p className="text-gray-500 mb-2">{prod.description}</p>
                 {prod.price && (
@@ -52,7 +55,8 @@ export const Productos = ({ productos, selectedCategory }: Props) => {
                   </div>
                 )}
                 <button
-                  onClick={() => addToCart(prod)}
+                
+                  onClick={() => compraProduc(prod)}
                   className="mt-3 bg-gray-200 text-black px-3 py-2 rounded border border-stone-300 hover:bg-red-700 hover:text-white hover:border-transparent transition duration-300"
                 >
                   Agregar al carrito
