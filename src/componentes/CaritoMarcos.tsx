@@ -8,7 +8,7 @@ interface Props {
 const LS_KEY = "carritoMarcos";
 
 export const CaritoMarcos = ({ compraProducto }: Props) => {
-  // Inicializador perezoso: carga desde localStorage solo al montar
+  // inicializar
   const [carrito, setCarrito] = useState<ProducInterface[]>(() => {
     try {
       const raw = localStorage.getItem(LS_KEY);
@@ -22,7 +22,7 @@ export const CaritoMarcos = ({ compraProducto }: Props) => {
 
   const [abierto, setAbierto] = useState(false);
 
-  // Guardar carrito en localStorage cada vez que cambie
+  // aca cada vez que cambie se guarda
   useEffect(() => {
     try {
       localStorage.setItem(LS_KEY, JSON.stringify(carrito));
@@ -31,7 +31,7 @@ export const CaritoMarcos = ({ compraProducto }: Props) => {
     }
   }, [carrito]);
 
-  // Cuando llega un nuevo producto, lo agregamos (permitimos duplicados)
+  
   useEffect(() => {
     if (!compraProducto) return;
     setCarrito((prev) => [...prev, compraProducto]);
@@ -39,7 +39,7 @@ export const CaritoMarcos = ({ compraProducto }: Props) => {
 
   const toggleCarrito = () => setAbierto((s) => !s);
  
-  // eliminar por índice (permite duplicados)
+  //borrar todo
   const eliminarProducto = (index: number) => {
     setCarrito((prev) => prev.filter((_, i) => i !== index));
   };
