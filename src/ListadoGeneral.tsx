@@ -48,7 +48,8 @@ export const ListadoGeneral = () => {
 
 
     return (
-    <div className="p-4 max-w-6xl mx-auto"> {/*centre el contenedor un poco*/}
+    <div className="p-8 max-w-6xl mx-auto"> {/*centre el contenedor un poco*/}
+          {/* class="bg-white min-h-screen pb-8 flex flex-col" */}
       <h2 className="text-2xl font-bold mb-4">Listado General de Categorías</h2>
       <Categoriasss 
       categories={categoriass} //aca le mando los categorias 
