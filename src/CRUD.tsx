@@ -16,7 +16,7 @@ export const CRUD = () => {
 
   const [open, setOpen] = useState(Boolean);
 
-  const [recargar, setRecargar] = useState(Boolean);
+  const [recargar, setRecargar] = useState(Boolean);//tengo q hacer que cuando se cambie algo o se elimine este actualice
 
   useEffect(() => {
     getCategoris()
