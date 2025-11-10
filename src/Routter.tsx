@@ -10,7 +10,7 @@ export const Routter = () => {
       <Route path="/Crud" element={<CRUD />} />
       <Route path="/detalle/:id" element={<DetalleProducto />} />
 
-      {/* crear una pagina con error 404  */}
+      {/* crear un componente cuando ponga cualquier url  */}
       <Route path="*" element={<ListadoGeneral />} />
     </Routes>
   );

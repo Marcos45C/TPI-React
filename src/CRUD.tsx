@@ -14,9 +14,11 @@ export const CRUD = () => {
   const [productoss, setProductoss] = useState<ProducInterface[]>([]);
   const [tags, setTags] = useState<TagsInterface[]>([]);
 
-  const [open, setOpen] = useState(Boolean);
+  const [openCategoria, setOpenCategoria] = useState(Boolean);
+  const [openProducto, setOpenProducto] = useState(Boolean);
+  const [openTags, setOpenTags] = useState(Boolean);
 
-  const [recargar, setRecargar] = useState(Boolean);//tengo q hacer que cuando se cambie algo o se elimine este actualice
+  // const [recargar, setRecargar] = useState(Boolean); //tengo q hacer que cuando se cambie algo o se elimine este actualice
 
   useEffect(() => {
     getCategoris()
@@ -126,18 +128,17 @@ export const CRUD = () => {
       {/* categotiass */}
       <section className="mb-12">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-semibold text-gray-700">Categorías</h2>
+          <div className="flex items-center gap-4">
+            <h2 className="text-2xl font-semibold text-gray-700">Categorías</h2>
+            <button
+              onClick={() => setOpenCategoria(!openCategoria)}
+              className={`inline-block text-left px-4 py-2 font-semibold text-gray-700 transition-all duration-300
+              ${openCategoria ? "opacity-40" : "opacity-100"}`}
+            >
+              Información adicional
+            </button>
+          </div>
 
-          {/* el acordeon para abrir  */}
-          <button
-            onClick={() => setOpen(!open)}
-             className={`w-full text-left px-4 py-2 font-semibold text-gray-700 transition-colors
-          ${open ? "bg-gray-200" : "bg-gray-100 hover:bg-gray-200"}`}
-            
-          >
-            Información adicional
-          </button>
-          {/* para crear categoria */}
           <button
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition"
             onClick={CrearCategoria}
@@ -145,7 +146,7 @@ export const CRUD = () => {
             nueva Categoría
           </button>
         </div>
-        {open && ( // si toca la categoria se despliega todo esto
+        {openCategoria && ( // si toca la categoria se despliega todo esto
           <div className="overflow-x-auto shadow rounded-lg">
             <table className="min-w-full bg-white border border-gray-200 rounded-lg">
               <thead className="bg-gray-100 text-gray-700 uppercase text-sm">
@@ -192,7 +193,17 @@ export const CRUD = () => {
       {/* productoss */}
       <section>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-semibold text-gray-700">Productos</h2>
+          <div className="flex items-center gap-4">
+            <h2 className="text-2xl font-semibold text-gray-700">Productos</h2>
+
+            <button
+              onClick={() => setOpenProducto(!openProducto)}
+              className={`inline-block text-left px-4 py-2 font-semibold text-gray-700 transition-all duration-300
+              ${openProducto ? "opacity-40" : "opacity-100"}`}
+            >
+              Información adicional
+            </button>
+          </div>
           <button
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition"
             onClick={CrearProducto}
@@ -200,7 +211,7 @@ export const CRUD = () => {
             nuevo Producto
           </button>
         </div>
-
+        {openProducto && (
         <div className="overflow-x-auto shadow rounded-lg">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead className="bg-gray-100 text-gray-700 uppercase text-sm">
@@ -249,12 +260,22 @@ export const CRUD = () => {
             </tbody>
           </table>
         </div>
+        )}
       </section>
 
       {/* TAGS */}
       <section className="mt-12">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-semibold text-gray-700">Tags</h2>
+          <div className="flex items-center gap-4">
+            <h2 className="text-2xl font-semibold text-gray-700">Tags</h2>
+            <button
+              onClick={() => setOpenTags(!openTags)}
+              className={`inline-block text-left px-4 py-2 font-semibold text-gray-700 transition-all duration-300
+              ${openTags ? "opacity-40" : "opacity-100"}`}
+            >
+              Información adicional
+            </button>
+          </div>
           <button
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition"
             onClick={CrearTags}
@@ -262,7 +283,7 @@ export const CRUD = () => {
             Nuevo Tag
           </button>
         </div>
-
+         {openTags && ( // si toca la tags se despliega todo esto
         <div className="overflow-x-auto shadow rounded-lg">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead className="bg-gray-100 text-gray-700 uppercase text-sm">
@@ -312,6 +333,7 @@ export const CRUD = () => {
             </tbody>
           </table>
         </div>
+        )}
       </section>
     </div>
   );
