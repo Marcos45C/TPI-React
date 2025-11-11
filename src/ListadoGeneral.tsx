@@ -19,6 +19,8 @@ export const ListadoGeneral = () => {
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
     const [compraProducto, setCompraProducto] = useState<ProducInterface| null>(null);
+
+    const [searchTerm, setSearchTerm] = useState<string>(""); 
   
     useEffect(() => {
         getCategoris()
@@ -40,11 +42,29 @@ export const ListadoGeneral = () => {
     setSelectedCategory(id);
     }
   };
+  
 
   //funcion para recibir el producto seleccionado al comprar
   const comprarProductos =(producto:ProducInterface)=>{
     setCompraProducto({...producto}); //esto lo puse asi porque tuve que reenderizar los productos para que se actualicen
   }
+ //agregue la logica de filtrado, para buscar por producto, descripcion o categoria
+  const filteredProducts = productoss.filter((p) => {
+    const categoria = categoriass.find((c) => c.id == p.categoria_id);
+    const textoBusqueda = searchTerm.toLowerCase(); //guarda el texto recibido y lo pasa a minuscul
+
+      const matchesCategory =
+        selectedCategory === null || p.categoria_id === selectedCategory;
+
+        const categoriaExiste = categoria?.title?.toLowerCase() ?? ""; //comprueba que exista la categoria
+
+        const matchesSearch = //aca se basa la logica del buscado
+         p.title.toLowerCase().includes(textoBusqueda) ||
+         p.description?.toLowerCase().includes(textoBusqueda) ||
+         categoriaExiste?.includes(textoBusqueda); 
+
+  return matchesCategory && matchesSearch;  //retorna lo buscado a tiempo real
+    });
 
 
     return (
@@ -54,8 +74,15 @@ export const ListadoGeneral = () => {
       categories={categoriass} //aca le mando los categorias 
       onCategorySelect={handleCategorySelect}
       />
+      {/*barra de busquedad */}
+      <input 
+        type="text"
+        placeholder="Buscar producto..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)} 
+        className="border border-gray-300 rounded-md p-2 w-full mb-4"/>
       <Productos
-        productos={productoss} //aca le mando los productos 
+        productos={filteredProducts} //aca le mando los productos filtrados
         selectedCategory={selectedCategory}
         compraProduc={comprarProductos}
       />
