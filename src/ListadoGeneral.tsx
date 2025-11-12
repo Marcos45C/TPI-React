@@ -81,7 +81,7 @@ export const ListadoGeneral = () => {
         placeholder="Buscar producto..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)} 
-        className="border border-gray-300 rounded-md p-2 w-full mb-4"/>
+        className="border mt-9 border-gray-300 rounded-md p-2 w-full mb-4"/>
       <Productos
         productos={filteredProducts} //aca le mando los productos filtrados
         selectedCategory={selectedCategory}
