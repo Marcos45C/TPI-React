@@ -33,7 +33,7 @@ export const Productos = ({ productos, selectedCategory,compraProduc }: Props) =
               key={prod.id}
               className="max-w-96 shadow-lg bg-gray-100 h-full flex flex-col rounded-lg overflow-hidden transition hover:scale-[1.02]"
             >
-              <div className="relative  cursor-pointer" onClick={() => irADetalle(prod.id)}>
+              <div className="relative cursor-pointer border-3 border-white hover:border-red-600" onClick={() => irADetalle(prod.id)}>
                 <img
                   src={
                     prod.pictures && prod.pictures.length > 0
@@ -66,7 +66,7 @@ export const Productos = ({ productos, selectedCategory,compraProduc }: Props) =
           ))}
         </ul>
       ) : (
-        <p className="text-gray-500 mt-4">
+        <p className="text-gray-900 mt-4">
           No hay productos para esta categoría.
         </p>
       )}

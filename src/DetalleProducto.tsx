@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { apiProduct } from "./api/url/refugioHuellitas";
 import type { ProducInterface } from "./api/interfaces/general-Interfaces";
@@ -18,6 +18,7 @@ const mapApiProduct = (variable: any): ProducInterface => ({
 
 export const DetalleProducto = () => {
   const { id } = useParams<{id: string }>(); 
+  const navigate = useNavigate();
 
   //Estados del producto
   const [producto, setProducto] = useState<ProducInterface | null>(null);
@@ -84,6 +85,11 @@ export const DetalleProducto = () => {
 
   return (
     <div className="mt-3 p-4 max-w-3xl mx-auto border-1 border-gray-300 shadow-xl">
+      {/**Boton para volver a listadoGeneral*/}
+      <button onClick={() => navigate("/")} 
+         className="mb-6 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+        Volver
+      </button> 
       <h1 className="text-3xl font-bold mb-4">{producto.title}</h1>
       <img 
         src={imageUrl}
