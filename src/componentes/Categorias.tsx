@@ -1,7 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 import type { CategoryInterfaz } from "../api/interfaces/general-Interfaces";
-
+import imgDefecto from "../imagenes/logoCenter.png";
 
 interface Props {
   categories: CategoryInterfaz[];
@@ -27,9 +27,9 @@ export function Categoriasss({ categories,onCategorySelect  }: Props) {
         >
       
             <img
-              src={`http://161.35.104.211:8000${cat.picture}`}
-              alt={cat.title || "no hay"}
-              className="w-full h-48 object-cover mx-auto mix-blend-multiply brightness-110 mb-0 rounded"
+            src={cat.picture ? `http://161.35.104.211:8000${cat.picture}` : imgDefecto}
+            alt={cat.title || "no hay"}
+            className="w-full h-48 object-cover mx-auto mix-blend-multiply brightness-110 mb-0 rounded"
             />
           <h2 className="text-xl font-bold text-red-700">{cat.title}</h2>
         </div>

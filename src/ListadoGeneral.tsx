@@ -59,9 +59,9 @@ export const ListadoGeneral = () => {
         const categoriaExiste = categoria?.title?.toLowerCase() ?? ""; //comprueba que exista la categoria
 
         const matchesSearch = //aca se basa la logica del buscado
-         p.title.toLowerCase().includes(textoBusqueda) ||
-         p.description?.toLowerCase().includes(textoBusqueda) ||
-         categoriaExiste?.includes(textoBusqueda); 
+        p.title.toLowerCase().includes(textoBusqueda) ||
+        p.description?.toLowerCase().includes(textoBusqueda) ||
+        categoriaExiste?.includes(textoBusqueda); 
 
   return matchesCategory && matchesSearch;  //retorna lo buscado a tiempo real
     });
