@@ -3,13 +3,16 @@ import type {
   CategoryInterfaz,
   ProducInterface,
   TagsInterface,
-} from "./api/interfaces/general-Interfaces";
-import { getCategoris } from "./servicios/get-api-categoria";
-import { getProductis } from "./servicios/get-api-productos";
-import { apiCategory, apiProduct, apiTags } from "./api/url/refugioHuellitas";
-import { getTags } from "./servicios/get-api-tags";
+} from "../api/interfaces/general-Interfaces";
+import { getCategoris } from "../servicios/get-api-categoria";
+import { getProductis } from "../servicios/get-api-productos";
+import { apiCategory, apiProduct, apiTags } from "../api/url/refugioHuellitas";
+import { getTags } from "../servicios/get-api-tags";
+import { useNavigate } from "react-router-dom";
 
 export const CRUD = () => {
+  const navigate = useNavigate();
+
   const [categoriass, setCategoriass] = useState<CategoryInterfaz[]>([]);
   const [productoss, setProductoss] = useState<ProducInterface[]>([]);
   const [tags, setTags] = useState<TagsInterface[]>([]);
@@ -34,9 +37,11 @@ export const CRUD = () => {
 
   const CrearCategoria = () => {
     console.log("CrearCategoria");
+    navigate("/categoria/nueva");
   };
   const EditarCategoria = (id: number | null) => {
     console.log("EditarCategoria", id);
+    navigate(`/categoria/editar/${id}`);
   };
 
   const EliminarCategoria = async (id: number | null) => {
@@ -93,7 +98,7 @@ export const CRUD = () => {
   ////////////////////
 
   const CrearTags = () => {
-    console.log("CrearProducto");
+    console.log("Crear Tags");
   };
   const EditarTags = (id: number | null) => {
     console.log("EditarProducto", id);
