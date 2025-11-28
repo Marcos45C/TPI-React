@@ -9,22 +9,36 @@ import { Categoriasss } from "./componentes/Categorias";
 import {  Productos } from "./componentes/Productos";
 import { Carrito } from "./componentes/Carrito";
 import { Footer } from "./componentes/Footer";
+//imagen de carga
+import logoCarga from "./imagenes/logoCarga.png";
+
 
 export const ListadoGeneral = () => {
     const [categoriass, setCategoriass] = useState<CategoryInterfaz[]>([]); 
     const [productoss, setProductoss] = useState<ProducInterface[]>([]);
+
+    //Pantalla de carga
+    const [isLoading, setIsLoading] = useState(true);
     
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
     const [compraProducto, setCompraProducto] = useState<ProducInterface| null>(null);
     const [searchTerm, setSearchTerm] = useState<string>(""); 
   
     useEffect(() => {
-        getCategoris()
-            .then(setCategoriass)//si da bien y es lo mismo de hacer asi .then((data) => setCategoriass(data))
-            .catch((i) => console.error("error al cargar categorías:", i));
-        getProductis()
-            .then(setProductoss)//
-            .catch((i) => console.error("error al cargar productos:", i));
+      //Promise.all sirve para esperar las 2 peticiones juntas. 
+      //asi no sucede eso de que va cargando de a uno.
+      Promise.all([getCategoris(), getProductis()])
+      .then(([catsData, prodsData]) => {
+        setCategoriass(catsData);
+        setProductoss(prodsData);
+      })
+      .catch((error) => {
+        console.error("Error cargando datos:", error);
+      })
+      .finally(() => {
+        //Sea que funciono o no, se quita el loading
+        setIsLoading(false);
+      })
     }, []);
 
     
@@ -39,11 +53,11 @@ export const ListadoGeneral = () => {
     }
   };
   
-
   //funcion para recibir el producto seleccionado al comprar
   const comprarProductos =(producto:ProducInterface)=>{
     setCompraProducto({...producto}); //esto lo puse asi porque tuve que reenderizar los productos para que se actualicen
   }
+
  //agregue la logica de filtrado, para buscar por producto, descripcion o categoria
   const filteredProducts = productoss.filter((p) => {
     const categoria = categoriass.find((c) => c.id == p.categoria_id);
@@ -62,6 +76,22 @@ export const ListadoGeneral = () => {
   return matchesCategory && matchesSearch;  //retorna lo buscado a tiempo real
     });
 
+    //Pantalla de carga
+    if(isLoading) {
+      return (
+        <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-red-500 mb-4"></div>
+              <h2 className="text-xl font-semibold text-gray-700 anime-pulse">
+                Cargando el supermercado...
+              </h2>
+              <img 
+              src={logoCarga}
+              alt="Cargando"
+              className="w-8 h-8 object-contain animate-bounce pt-4"/>
+              <p className="text-gray-500 text-sm mt-2">Preparando los productos para tí </p>
+          </div>
+      );
+    }
 
     return (
    // Esto hace que las tarjetas blancas de los productos resalten más (efecto profundidad diria io).
