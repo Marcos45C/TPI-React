@@ -4,7 +4,7 @@ import { getProductis } from "./servicios/get-api-productos";
 import { getCategoris } from "./servicios/get-api-categoria";
 import type { CategoryInterfaz, ProducInterface } from "./api/interfaces/general-Interfaces";
 import { Productos } from "./componentes/Productos";
-import { CaritoMarcos } from "./componentes/CaritoMarcos";
+import { Carrito } from "./componentes/Carrito";
 
 export const CategoriaPage = () => {
   const { id } = useParams<{ id: string }>(); // obtiene el id de la URL
@@ -57,7 +57,7 @@ export const CategoriaPage = () => {
             compraProduc={comprarProductos}
           />
        
-          <CaritoMarcos compraProducto={compraProducto} />
+          <Carrito compraProducto={compraProducto} />
         </>
       ) : (
         <p className="text-center text-black-600 font-semibold text-lg">

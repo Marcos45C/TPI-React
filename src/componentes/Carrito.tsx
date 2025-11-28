@@ -11,7 +11,7 @@ interface ItemCarrito extends ProducInterface {
 
 const LS_KEY = "carritoMarcos";
 
-export const CaritoMarcos = ({ compraProducto }: Props) => {
+export const Carrito = ({ compraProducto }: Props) => {
   // inicializar
   const [carrito, setCarrito] = useState<ItemCarrito[]>(() => {
     try {
