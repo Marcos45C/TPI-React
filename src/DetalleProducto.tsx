@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+//Api y url
 import { apiProduct } from "./api/url/refugioHuellitas";
 import type { ProducInterface } from "./api/interfaces/general-Interfaces";
+//Imagenes
 import imgDefecto from "./imagenes/logoCenter.png";
-//importe el footer y el logo de carga 
-import { Footer } from "./componentes/Footer";
 import logoCarga from "./imagenes/logoCarga.png";
-
+//componentes
+import { Footer } from "./componentes/Footer";
+import { Carrito } from "./componentes/Carrito";
 
 const mapApiProduct = (variable: any): ProducInterface => ({
   title: variable.title,
@@ -27,8 +28,11 @@ export const DetalleProducto = () => {
   const [producto, setProducto] = useState<ProducInterface | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  //Estado del carrito 
+  const [compraProducto, setCompraProducto] = useState<ProducInterface | null>(null);
 
-  //useEffect se ejecuta cuando se monta el componente
+
+ //useEffect se ejecuta cuando se monta el componente
   useEffect(() => {
     if (!id) {
       setLoading(false);
@@ -69,6 +73,14 @@ export const DetalleProducto = () => {
   fetchProducto();
   }, [id]);
 
+ //función para agregar al carrito
+ const handleAggregarCarrito = () => {
+  if(producto) {
+    setCompraProducto({...producto});
+  }
+ };
+
+
   if (loading) {
     return (
     <div 
@@ -100,8 +112,8 @@ export const DetalleProducto = () => {
     : imgDefecto;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex lflex-col justify-between">
-      <div className="max-w-6cl mx-auto p-6 w-full flex-grow">
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-between">
+      <div className="max-w-6xl mx-auto p-6 w-full flex-grow">
 
       {/**Boton para volver a listadoGeneral*/}
       <nav className="flex items-center text-sm text-gray-500 mb-8">
@@ -118,7 +130,7 @@ export const DetalleProducto = () => {
 
         {/**Layout de la tarjeta del producto*/}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-          <div className="grid grid-cols-1 md.grid-cols-2">
+          <div className="grid grid-cols-1 md:grid-cols-2">
             {/**Columna izquierda, ira la imagen*/}
             <div className="bg-gray-100 p-8 flex items-center justify-center h-[500px]">
                 <img 
@@ -157,9 +169,13 @@ export const DetalleProducto = () => {
                             ))}
                         </div>
                     )}
+
                     {/* Botones de Acción */}
                     <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                        <button className="flex-1 bg-red-600 text-white font-bold py-4 px-8 rounded-xl hover:bg-red-700 transition shadow-lg hover:shadow-red-500/30 flex items-center justify-center gap-2">
+
+                        <button 
+                          onClick={handleAggregarCarrito}
+                          className="flex-1 bg-red-600 text-white font-bold py-4 px-8 rounded-xl hover:bg-red-700 transition shadow-lg hover:shadow-red-500/30 flex items-center justify-center gap-2">
                             <span>🛒</span> Agregar al Carrito
                         </button>
                         <button 
@@ -172,6 +188,8 @@ export const DetalleProducto = () => {
             </div>
         </div>
       </div>
+      {/**el carrito */}
+      <Carrito compraProducto={compraProducto}/>
       {/* Footer al final */}
       <Footer />
     </div>
