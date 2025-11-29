@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ProducInterface } from "../api/interfaces/general-Interfaces";
-
+//Importe la pasarela de stripe
+import { PasarelaStripe } from "./PasarelaStripe";
 interface Props {
   compraProducto: ProducInterface | null;
 }
@@ -25,6 +26,9 @@ export const Carrito = ({ compraProducto }: Props) => {
   });
 
   const [abierto, setAbierto] = useState(false);
+
+  //Estado de la pasarela, para abrir o cerrarla
+  const [mostrarPago, setMostrarPago] = useState(false);
 
   // aca cada vez que cambie se guarda
   useEffect(() => {
@@ -78,6 +82,12 @@ export const Carrito = ({ compraProducto }: Props) => {
     (acc, item) => acc + item.price * item.cantidad, 0
   );
 
+  //Esta funcion para cuando se termine el pago 
+  const handlePagoExitoso = () => {
+    limpiarCarrito(); //limpio el carrito
+    setAbierto(false); //se cierra el panel lateral del carrito
+    alert("pago exitoso"); 
+  }
 
 
   return (
@@ -148,10 +158,23 @@ export const Carrito = ({ compraProducto }: Props) => {
             <p className="text-lg font-semibold text-right">
               TOTAL: <span className="text-red-700">${total.toFixed(2)}</span>
               </p>
+              {/*Aca agregue el botón de comprar*/}
+              <button onClick={() => setMostrarPago(true) } 
+              className="w-full bg-red-600 text-white font-bold py-3 rounded hover:bg-red-700 transition-200 shadow-md">
+                Comprar
+              </button>
+
             <button onClick={limpiarCarrito} className="w-full bg-gray-700 text-white p-2 rounded hover:bg-gray-800 transition">Vaciar carrito</button>
           </div>
         )}
       </div>
+      {/*aca esta la pasarela*/}
+      <PasarelaStripe 
+        isOpen={mostrarPago}
+        onClose={() => setMostrarPago(false)}
+        total={total}
+        onPaymentSuccess={handlePagoExitoso}
+        />
     </>
   );
 };
