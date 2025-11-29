@@ -77,7 +77,7 @@ export const CategoriaPage = () => {
                     cargando productos...
            </p>
            </div>
-      )}
+      ) }
       </div>
       {/*agregue el footer también.*/}
       <Footer/>

@@ -1,4 +1,12 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' 
+  });
+};
 
 export const Footer = () => {
   return (
@@ -16,17 +24,39 @@ export const Footer = () => {
               Llevamos la calidad de siempre a la puerta de tu casa.
             </p>
           </div>
-            {/** Primera columna: Enlaces rápidos*/}
+            {/**columna 2: Enlaces rápidos*/}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-gray-200">Enlaces Rápidos</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-red-400 transition-colors">Inicio</a></li>
-              <li><a href="#" className="hover:text-red-400 transition-colors">Ofertas Semanales</a></li>
-              <li><a href="#" className="hover:text-red-400 transition-colors">Categorías</a></li>
-              <li><a href="#" className="hover:text-red-400 transition-colors">Soporte</a></li>
+              <li> 
+                {/**La unica con scroll, sin el #*/}
+                <Link
+                 to="/" 
+                 onClick={scrollToTop}
+                 className="hover:text-red-400 transition-colors cursor-pointer">
+                Inicio
+              </Link>
+              </li>
+              <li>
+                <button className="hover:text-red-400 transition-colors text-left">
+                  Ofertas Semanales
+                </button>
+              </li>
+
+              <li>
+                <button className="hover:text-red-400 transition-colors text-left">
+                  Categorías
+                  </button> 
+                </li>
+
+                <li>
+                  <button className="hover:text-red-400 transition-colors text-left">
+                    Soporte
+                    </button>
+                </li>
             </ul>
           </div>
-          {/**Segunda columna */}
+          {/**Columna 3 */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-gray-200">Contáctanos</h4>
             <ul className="space-y-2 text-sm text-gray-400">

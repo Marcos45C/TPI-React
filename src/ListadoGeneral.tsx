@@ -80,15 +80,16 @@ export const ListadoGeneral = () => {
     if(isLoading) {
       return (
         <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-red-500 mb-4"></div>
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-red-500 mb-4">
+          </div>
               <h2 className="text-xl font-semibold text-gray-700 anime-pulse">
-                Cargando el supermercado...
+                Cargando el supermercado... 
               </h2>
-              <img 
-              src={logoCarga}
-              alt="Cargando"
-              className="w-8 h-8 object-contain animate-bounce pt-4"/>
-              <p className="text-gray-500 text-sm mt-2">Preparando los productos para tí </p>
+              <div className="flex items-center justify-center gap-3 mt-4">
+                <p className="text-gray-500 text-sm">Preparando los productos para tí...  
+              </p>
+              <img src={logoCarga} alt="Cargando" className="w-4 h-4 object-contain animate-bounce"/>
+              </div>
           </div>
       );
     }
