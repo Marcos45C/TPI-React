@@ -3,7 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 //aca cargo mi clave pública
-const stripePromise = loadStripe("pk_test_51SYpkmRqGz21j0MQdwV3RvsmZ9q4dgqdOReXGDk9oHYFjbMfnJOxqWBw3kf7yIX4ccGtSsNY1b04Kq4Lwc0ibSQ000NlaaxYup");
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 interface Props {
     isOpen: boolean;
@@ -49,7 +49,7 @@ const CheckoutForm = ({ onClose, total, onPaymentSuccess }: Omit<Props, 'isOpen'
             return; //aca lo corto para evitar que se "realice"
         }
 
-        console.log("Pago exitoso (Token):", paymentMethod);
+        console.log("Pago exitoso:", paymentMethod);
         setTimeout(() => {
             setLoading(false);
             onPaymentSuccess();
