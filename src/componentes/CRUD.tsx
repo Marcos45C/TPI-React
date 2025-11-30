@@ -9,6 +9,7 @@ import { getProductis } from "../servicios/get-api-productos";
 import { apiCategory, apiProduct, apiTags } from "../api/url/refugioHuellitas";
 import { getTags } from "../servicios/get-api-tags";
 import { useNavigate } from "react-router-dom";
+import { ModalConfirmar } from "./ModalConfirmar";
 
 export const CRUD = () => {
   const navigate = useNavigate();
@@ -16,6 +17,10 @@ export const CRUD = () => {
   const [categoriass, setCategoriass] = useState<CategoryInterfaz[]>([]);
   const [productoss, setProductoss] = useState<ProducInterface[]>([]);
   const [tags, setTags] = useState<TagsInterface[]>([]);
+
+  //modales para eliminar
+  const [mostrarModal, setMostrarModal] = useState(false);
+  const [idAEliminar, setIdAEliminar] = useState<number | null>(null);
 
   const [openCategoria, setOpenCategoria] = useState(Boolean);
   const [openProducto, setOpenProducto] = useState(Boolean);
@@ -44,25 +49,24 @@ export const CRUD = () => {
     navigate(`/categoria/editar/${id}`);
   };
 
-  const EliminarCategoria = async (id: number | null) => {
-    console.log("EliminarCategoria", id);
-    try {
-      const respuesta = await fetch(`${apiCategory}${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer div",
-        },
-      });
-      if (!respuesta.ok) {
-        throw new Error("Error al eliminar la categoria");
-      }
-      console.log("Producto eliminado correctamente");
-      return true;
-    } catch (error) {
-      console.error("Fallo al eliminar:", error);
-      return false;
+  const confirmarEliminacion = async () => {
+    if (!idAEliminar) return;
+
+    const respuesta = await fetch(`${apiCategory}${idAEliminar}/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer div",
+      },
+    });
+
+    if (respuesta.ok) {
+      // 🔥 Actualiza la tabla automáticamente
+      setCategoriass((prev) => prev.filter((c) => c.id !== idAEliminar));
     }
+
+    setMostrarModal(false);
+    setIdAEliminar(null);
   };
 
   ///////////////////////////////
@@ -188,7 +192,10 @@ export const CRUD = () => {
                         Eliminar
                       </button> */}
                       <div className="inline-flex">
-                        <button className="-ml-px border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50">
+                        <button
+                          className="-ml-px border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50"
+                          onClick={() => EditarCategoria(cat.id)}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -205,7 +212,13 @@ export const CRUD = () => {
                           </svg>
                         </button>
 
-                        <button className="-ml-px rounded-r-sm border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50">
+                        <button
+                          className="-ml-px rounded-r-sm border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50"
+                          onClick={() => {
+                            setIdAEliminar(cat.id);
+                            setMostrarModal(true);
+                          }}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -376,6 +389,12 @@ export const CRUD = () => {
           </div>
         )}
       </section>
+      <ModalConfirmar
+        open={mostrarModal}
+        texto="¿Seguro que deseas eliminar esta categoría?"
+        onCancel={() => setMostrarModal(false)}
+        onConfirm={confirmarEliminacion}
+      />
     </div>
   );
 };
