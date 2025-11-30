@@ -143,7 +143,7 @@ export const DetalleProducto = () => {
                     
                     {/* Título y Categoría */}
                     <span className="text-sm font-bold text-red-500 tracking-wider uppercase mb-2">
-                        Categoría #{producto.categoria_id}
+                      { producto.categoria_id !==null ? `Categoría #${producto.categoria_id}` : 'Sin categoría'}
                     </span>
                     <h1 className="text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
                         {producto.title}
@@ -166,7 +166,8 @@ export const DetalleProducto = () => {
                                 <span key={index} className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold uppercase">
                                     #{tag}
                                 </span>
-                            ))}
+                             ) 
+                              ) }
                         </div>
                     )}
 
