@@ -58,3 +58,6 @@ Estos componentes "tontos" se encargan de **mostrar la UI** y *emitir eventos** 
 
 * **`componentes/Carrito.tsx`**: Es el componente del sidebar que consume el `CartContext` para mostrar los items (`cart`) y su estado de visibilidad (`isCartOpen`).
 * **`componentes/CartToggleButton.tsx`**: Es el botón flotante 🛒 que también consume el contexto para mostrar la cantidad de items (`cart.length`) y ejecutar `toggleCart()` al hacer clic.
+
+### Instalaciones 
+- router
