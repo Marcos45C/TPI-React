@@ -164,7 +164,7 @@ export const DetalleProducto = () => {
                         <div className="flex flex-wrap gap-2 mb-8">
                             {producto.tags.map((tag: any, index: number) => (
                                 <span key={index} className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold uppercase">
-                                    #{tag}
+                                    #{tag.title} 
                                 </span>
                              ) 
                               ) }
