@@ -23,7 +23,7 @@ export const FormularioProducto = () => {
     setValue,
     formState: { errors },
   } = useForm<ProducInterface>({
-    defaultValues: { title: "", description: "", price: 0, category_id: 0 },
+    defaultValues: { title: "", description: "", price: 0, category_id: null },
   });
 
   const [cargando, setCargando] = useState(false);
@@ -224,19 +224,19 @@ export const FormularioProducto = () => {
             )}
           </div>
 
-          {/* Selector de  Categoría */}
+          {/* Selector de  Categoria */}
           <div>
             <label className="block text-gray-700 font-medium">Categoría</label>
             <select
               {...register("category_id", {
-                required: "Selecciona una categoría",
+                // required: "Selecciona una categoría", saque esto para que permita nulos, osea sin categoria
                 valueAsNumber: true,
               })}
               className={`w-full border rounded px-3 py-2 mt-1 ${
                 errors.category_id ? "border-red-500" : ""
               }`}
             >
-              <option value={0}>-- Elegir categoría --</option>
+              <option value="">-- Elegir categoría --</option>
 
               {categorias.map((cat) => (
                 <option key={cat.id} value={Number(cat.id)}>

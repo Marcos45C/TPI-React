@@ -73,7 +73,7 @@ export const CRUD = () => {
     });
   };
 
-  // función unica que confirma y borra , se usa con el elimimarItem para q pueda abrir los 3 el mismo modal
+  // funcion q usan los 3  que confirma y borra , se usa con el elimimarItem para q pueda abrir los 3 el mismo modal
   const confirmarEliminacion = async () => {
     const id = modalConfig.id;
     const tipo = modalConfig.tipo;
@@ -111,11 +111,10 @@ export const CRUD = () => {
   const cancelarEliminacion = () =>
     setModalConfig({ abierto: false, id: null, tipo: null, texto: "" });
 
-
   const CrearProducto = () => {
-    console.log("CrearProducto");
+    console.log("Crear Producto");
+    navigate("/productos/nuevo");
   };
-
 
   const CrearTags = () => {
     console.log("Crear Tags");
@@ -279,6 +278,28 @@ export const CRUD = () => {
                     </td>
                     <td className="py-3 px-4 border-b text-center space-x-2">
                       <div className="inline-flex gap-2">
+                        <button
+                        className="bg-green-500 border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-green-600 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50 rounded-lg"
+                        onClick={() =>
+                            navigate("/productos/editar", {
+                              state: { productos: prod },
+                            })
+                          }
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                          >
+                            <path d="M20.59 13.41l-8-8A2 2 0 0010.17 5H5a2 2 0 00-2 2v5.17a2 2 0 00.59 1.41l8 8a2 2 0 002.83 0l5.17-5.17a2 2 0 000-2.83z" />
+                            <circle cx="7.5" cy="7.5" r="1.5" />
+                          </svg>
+                        </button>
+
                         <button
                           className="bg-blue-500 border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-blue-600 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50 rounded-lg"
                           onClick={() =>
