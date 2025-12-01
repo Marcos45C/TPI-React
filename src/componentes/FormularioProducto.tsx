@@ -5,7 +5,7 @@ import type {
 } from "../api/interfaces/general-Interfaces";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { apiProduct } from "../api/url/refugioHuellitas";
+import { apiProduct, claveToken } from "../api/url/refugioHuellitas";
 import { getCategoris } from "../servicios/get-api-categoria";
 
 export const FormularioProducto = () => {
@@ -29,15 +29,9 @@ export const FormularioProducto = () => {
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [categorias, setCategorias] = useState<CategoryInterfaz[]>([]);
+  const [preview, setPreview] = useState<any[]>([]);
 
   const esEdicion = Boolean(productoState);
-
-  // Cargar valores base si es edición
-  useEffect(() => {
-    if (esEdicion && productoState) {
-      reset(productoState);
-    }
-  }, [esEdicion, productoState, reset]);
 
   // Redirige si entras a editar sin producto
   useEffect(() => {
@@ -52,11 +46,10 @@ export const FormularioProducto = () => {
       .then((cats) => {
         setCategorias(cats);
 
-        // Una vez cargadas las categorías, seteamos la correcta si es edición
+        // 👉 Una vez que las categorías están cargadas, recién ahí seteamos los valores
         if (esEdicion && productoState) {
-          if (productoState.category_id) {
-            setValue("category_id", productoState.category_id);
-          }
+          reset(productoState); // ahora sí
+          setPreview(productoState.pictures ?? []);
         }
       })
       .catch((i) => console.error("error al cargar categorías:", i));
@@ -75,14 +68,66 @@ export const FormularioProducto = () => {
         method,
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer div",
+          Authorization: `Bearer ${claveToken}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          title: formData.title,
+          description: formData.description,
+          price: formData.price,
+          category_id: formData.category_id,
+        }),
       });
 
       if (!res.ok) {
         const text = await res.text().catch(() => "");
         throw new Error(`Error al guardar (status ${res.status}) ${text}`);
+      }
+
+      const savedProduct = await res.json(); // para obtener el ID si es nuevo
+      const productId = esEdicion ? productoState!.id : savedProduct.id;
+
+      // if (formData.pictures && formData.pictures.length > 0) {
+      //   const formDataImg = new FormData();
+
+      //   for (let img of formData.pictures as any) {
+      //     formDataImg.append("picture", img);
+      //   }
+
+      //   const uploadURL = `${apiProduct}${productId}/pictures`;
+
+      //   const upload = await fetch(uploadURL, {
+      //     method: "POST",
+      //     body: formDataImg,
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer ${claveToken}`,
+      //     },
+      //   });
+
+      //   if (!upload.ok) {
+      //     throw new Error("Error al subir imágenes");
+      //   }
+      // }
+      if (formData.pictures && formData.pictures.length > 0) {
+        const formDataImg = new FormData();
+
+        for (let img of formData.pictures) {
+          formDataImg.append("files", img);
+        }
+
+        const uploadURL = `${apiProduct}${productId}/pictures`;
+
+        const upload = await fetch(uploadURL, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${claveToken}`,
+          },
+          body: formDataImg,
+        });
+
+        if (!upload.ok) {
+          throw new Error("Error al subir imágenes");
+        }
       }
 
       navigate("/CRUD");
@@ -204,6 +249,38 @@ export const FormularioProducto = () => {
                 {errors.category_id.message}
               </p>
             )}
+          </div>
+
+          {/* Subir imagenes */}
+          <div>
+            <label className="block text-gray-700 font-medium">Imágenes</label>
+
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={(e) => {
+                const files = e.target.files ? Array.from(e.target.files) : [];
+                setValue("pictures", files as any); // para enviar luego
+                setPreview(files.map((f) => URL.createObjectURL(f))); // preview local
+              }}
+              className="w-full border px-3 py-2 rounded mt-1"
+            />
+
+            {/* Previsualización */}
+            <div className="grid grid-cols-3 gap-2 mt-3">
+              {preview.map((img, i) => (
+                <img
+                  key={i}
+                  src={
+                    typeof img === "string"
+                      ? `http://161.35.104.211:8000${img}` 
+                      : URL.createObjectURL(img) 
+                  }
+                  className="w-full h-24 object-cover rounded border"
+                />
+              ))}
+            </div>
           </div>
 
           <div className="flex justify-between pt-3">

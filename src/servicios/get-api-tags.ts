@@ -1,5 +1,5 @@
 import type { TagsInterface } from "../api/interfaces/general-Interfaces";
-import { apiTags } from "../api/url/refugioHuellitas";
+import { apiTags, claveToken } from "../api/url/refugioHuellitas";
 
 export const getTags = async (): Promise<TagsInterface[]> => {
   // hacemos la petición con fetch
@@ -7,7 +7,7 @@ export const getTags = async (): Promise<TagsInterface[]> => {
     method: "GET",
     headers: {
       Accept: "application/json",
-      Authorization: "Bearer div",
+      Authorization: `Bearer ${claveToken}`,
     },
   });
   if (!respuesta.ok) throw new Error(`Error ${respuesta.status}`);
