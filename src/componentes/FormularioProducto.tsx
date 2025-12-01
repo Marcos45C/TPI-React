@@ -260,9 +260,16 @@ export const FormularioProducto = () => {
               multiple
               accept="image/*"
               onChange={(e) => {
-                const files = e.target.files ? Array.from(e.target.files) : [];
-                setValue("pictures", files as any); // para enviar luego
-                setPreview(files.map((f) => URL.createObjectURL(f))); // preview local
+                const newFiles = e.target.files
+                  ? Array.from(e.target.files)
+                  : [];
+                //  guardamos las nuevas imágenes para enviar en el submit
+                setValue("pictures", newFiles as any);
+                // combinamos las previews EXISTENTES + NUEVAS
+                setPreview((prev) => [
+                  ...prev, // lo que ya tenía el producto
+                  ...newFiles.map((f) => URL.createObjectURL(f)), // nuevas imágenes
+                ]);
               }}
               className="w-full border px-3 py-2 rounded mt-1"
             />
@@ -273,9 +280,9 @@ export const FormularioProducto = () => {
                 <img
                   key={i}
                   src={
-                    typeof img === "string"
-                      ? `http://161.35.104.211:8000${img}` 
-                      : URL.createObjectURL(img) 
+                    img.startsWith("/uploads")
+                      ? `http://161.35.104.211:8000${img}` // imágenes reales del backend
+                      : img // blobs de nuevas imágenes
                   }
                   className="w-full h-24 object-cover rounded border"
                 />
