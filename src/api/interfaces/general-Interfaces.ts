@@ -11,7 +11,7 @@ export interface ProducInterface {
   description: string;
   price: number;
   pictures?: string[];
-  categoria_id: number | [];
+  category_id: number | null;
   tags: {
     title: string;
     id: number;
