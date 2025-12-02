@@ -33,7 +33,7 @@ export const Productos = ({ productos, selectedCategory,compraProduc }: Props) =
               key={prod.id}
               className="max-w-96 shadow-lg bg-gray-100 h-full flex flex-col rounded-lg overflow-hidden transition hover:scale-[1.02]"
             >
-              <div className="relative  cursor-pointer" onClick={() => irADetalle(prod.id)}>
+              <div className="relative cursor-pointer border-3 border-white hover:border-red-600" onClick={() => irADetalle(prod.id)}>
                 <img
                   src={
                     prod.pictures && prod.pictures.length > 0
@@ -66,9 +66,22 @@ export const Productos = ({ productos, selectedCategory,compraProduc }: Props) =
           ))}
         </ul>
       ) : (
-        <p className="text-gray-500 mt-4">
-          No hay productos para esta categoría.
+        <div className="flex flex-col items-center justify-center py-20 bg-white rounded-lg shadow-sm">
+           {/**Aca agregue un icono svg, en el caso de que no hayan productos en la categoria*/}
+          <svg
+             xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 30 30"
+              className="w-32 h-32 text-red-700 mb-4">
+               <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.2"/>
+               <circle cx="9" cy="10" r="1.3" fill="currentColor"/>
+               <circle cx="15" cy="10" r="1.3" fill="currentColor"/>
+               <path d="M8 16c1-.9 2.3-1.4 4-1.4s3 .5 4 1.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          
+        <p className="text-gray-500 text-lg font-medium">
+          Up! no encontre productos para esta Categoría. Perdón.
         </p>
+        </div>
       )}
     </div>
   );

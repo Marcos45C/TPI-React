@@ -31,6 +31,8 @@ export const Routter = () => {
         <Route path="/tags/editar" element={<FormularioTag />} />
 
       {/* crear un componente cuando ponga cualquier url  */}
+      <Route path="/categoria/:id" element={<CategoriaPage />} /> {/*la nueva ruta*/}
+      {/* crear una pagina con error 404  */}
       <Route path="*" element={<ListadoGeneral />} />
     </Routes>
   );
