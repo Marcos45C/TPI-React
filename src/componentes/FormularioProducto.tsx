@@ -33,7 +33,6 @@ export const FormularioProducto = () => {
 
   const esEdicion = Boolean(productoState);
 
-  // Redirige si entras a editar sin producto
   useEffect(() => {
     if (!productoState && location.pathname === "/productos/editar") {
       navigate("/CRUD", { replace: true });
@@ -46,7 +45,7 @@ export const FormularioProducto = () => {
       .then((cats) => {
         setCategorias(cats);
 
-        // 👉 Una vez que las categorías están cargadas, recién ahí seteamos los valores
+    
         if (esEdicion && productoState) {
           reset(productoState); // ahora sí
           setPreview(productoState.pictures ?? []);
@@ -55,7 +54,7 @@ export const FormularioProducto = () => {
       .catch((i) => console.error("error al cargar categorías:", i));
   }, []);
 
-  // Envío del formulario
+
   const onSubmit = async (formData: ProducInterface) => {
     setError(null);
     setCargando(true);
@@ -207,7 +206,6 @@ export const FormularioProducto = () => {
             <label className="block text-gray-700 font-medium">Categoría</label>
             <select
               {...register("category_id", {
-                // required: "Selecciona una categoría", saque esto para que permita nulos, osea sin categoria
                 valueAsNumber: true,
               })}
               className={`w-full border rounded px-3 py-2 mt-1 ${
@@ -241,9 +239,7 @@ export const FormularioProducto = () => {
                 const newFiles = e.target.files
                   ? Array.from(e.target.files)
                   : [];
-                //  guardamos las nuevas imágenes para enviar en el submit
                 setValue("pictures", newFiles as any);
-                // combinamos las previews EXISTENTES + NUEVAS
                 setPreview((prev) => [
                   ...prev, // lo que ya tenía el producto
                   ...newFiles.map((f) => URL.createObjectURL(f)), // nuevas imágenes
@@ -259,8 +255,8 @@ export const FormularioProducto = () => {
                   key={i}
                   src={
                     img.startsWith("/uploads")
-                      ? `http://161.35.104.211:8000${img}` // imágenes reales del backend
-                      : img // blobs de nuevas imágenes
+                      ? `http://161.35.104.211:8000${img}` 
+                      : img 
                   }
                   className="w-full h-24 object-cover rounded border"
                 />

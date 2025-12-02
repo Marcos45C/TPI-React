@@ -28,7 +28,7 @@ export const Routter = () => {
 
         {/* tags creacion y post o put*/}
         <Route path="/tags/nuevo" element={<FormularioTag />} />
-        <Route path="/tags/editar/" element={<FormularioTag />} />
+        <Route path="/tags/editar" element={<FormularioTag />} />
 
       {/* crear un componente cuando ponga cualquier url  */}
       <Route path="*" element={<ListadoGeneral />} />

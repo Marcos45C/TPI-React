@@ -34,11 +34,7 @@ export const CRUD = () => {
       .catch((i) => console.error("error al cargar tags:", i));
   }, []);
 
-  const CrearCategoria = () => {
-    console.log("CrearCategoria");
-    navigate("/categoria/nueva");
-  };
-  /////
+
 
   // estado unico para el modal y la eliminacion
   const [modalConfig, setModalConfig] = useState<{
@@ -111,6 +107,10 @@ export const CRUD = () => {
   const cancelarEliminacion = () =>
     setModalConfig({ abierto: false, id: null, tipo: null, texto: "" });
 
+  const CrearCategoria = () => {
+    console.log("CrearCategoria");
+    navigate("/categoria/nueva");
+  };
   const CrearProducto = () => {
     console.log("Crear Producto");
     navigate("/productos/nuevo");
@@ -118,6 +118,7 @@ export const CRUD = () => {
 
   const CrearTags = () => {
     console.log("Crear Tags");
+    navigate("/tags/nuevo");
   };
 
   return (
@@ -402,7 +403,7 @@ export const CRUD = () => {
                             className="bg-blue-500 border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-blue-600 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50 rounded-lg"
                             onClick={() =>
                               navigate("/tags/editar", {
-                                state: { tags: tag },
+                                state: { tag: tag },
                               })
                             }
                           >

@@ -12,7 +12,7 @@ export const AnadirTagsProducto = () => {
   const producto: any = location.state?.productos;
 
   const [tagsDisponibles, setTagsDisponibles] = useState<TagsInterface[]>([]);
-
+  const [cargandoTags, setCargandoTags] = useState(true);
   const [tagsSeleccionados, setTagsSeleccionados] = useState<number[]>([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export const AnadirTagsProducto = () => {
       navigate("/CRUD");
       return;
     }
-
+    setCargandoTags(true);
     setTagsSeleccionados(
       producto.tags
         ?.map((t: { id: string | number }) =>
@@ -28,10 +28,18 @@ export const AnadirTagsProducto = () => {
         )
         .filter((id: number) => id > 0) || []
     );
-    console.log(producto);
+    // console.log(producto);
     getTags()
-      .then(setTagsDisponibles)
-      .catch((i) => console.error("error al cargar tags:", i));
+      .then((data) => {
+        setTagsDisponibles(data);
+      })
+      .catch((i) => {
+        console.error("error al cargar tags:", i);
+        toast.error("Error al cargar la lista de tags."); // Opcional: mostrar error
+      })
+      .finally(() => {
+        setCargandoTags(false);
+      });
   }, [producto, navigate]);
 
   const toggleTag = (id: number) => {
@@ -76,34 +84,54 @@ export const AnadirTagsProducto = () => {
         Añadir Tags a: {producto?.title}
       </h2>
 
-      <div className="flex flex-wrap gap-2 mb-4">
-        {tagsDisponibles.map((tag: TagsInterface) => {
-          const tagId = parseInt((tag.id ?? 0).toString(), 10);
-
-          if (tagId <= 0) return null;
-
-          return (
-            <button
-              key={tagId}
-              onClick={() => toggleTag(tagId)}
-              className={`px-3 py-1 border rounded ${
-                tagsSeleccionados.includes(tagId)
-                  ? "bg-green-500 text-white"
-                  : "bg-gray-200"
-              }`}
-            >
-              {tag.title}
-            </button>
-          );
-        })}
-      </div>
-
+      {cargandoTags ? (
+        <p className="text-gray-500">Cargando tags disponibles...</p>
+      ) : tagsDisponibles.length === 0 ? (
+        <div className="p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded mb-4">
+          <p className="font-bold">Información:</p>
+          <p>No hay tags disponibles en el sistema para asignar.</p>
+        </div>
+      ) : (
+        <div className="flex flex-wrap gap-2 mb-4">
+          {tagsDisponibles.map((tag: TagsInterface) => {
+            const tagId = parseInt((tag.id ?? 0).toString(), 10);
+            if (tagId <= 0) return null;
+            return (
+              <button
+                key={tagId}
+                onClick={() => toggleTag(tagId)}
+                className={`px-3 py-1 border rounded ${
+                  tagsSeleccionados.includes(tagId)
+                    ? "bg-green-500 text-white"
+                    : "bg-gray-200"
+                }`}
+              >
+                {tag.title}
+              </button>
+            );
+          })}
+        </div>
+      )}
+      <div className="flex justify-between pt-4">
+        
+        <button
+          className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded transition"
+          onClick={() => navigate(-1)} 
+        >
+          Cancelar
+        </button>
       <button
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className={`bg-blue-600 text-white px-4 py-2 rounded ${
+          cargandoTags || tagsDisponibles.length === 0
+            ? "opacity-50 cursor-not-allowed"
+            : ""
+        }`}
         onClick={guardarTags}
+        disabled={cargandoTags || tagsDisponibles.length === 0}
       >
         Guardar Tags
       </button>
+      </div>
       <Toaster position="top-center" />
     </div>
   );
