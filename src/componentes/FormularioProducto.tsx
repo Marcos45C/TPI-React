@@ -86,28 +86,6 @@ export const FormularioProducto = () => {
       const savedProduct = await res.json(); // para obtener el ID si es nuevo
       const productId = esEdicion ? productoState!.id : savedProduct.id;
 
-      // if (formData.pictures && formData.pictures.length > 0) {
-      //   const formDataImg = new FormData();
-
-      //   for (let img of formData.pictures as any) {
-      //     formDataImg.append("picture", img);
-      //   }
-
-      //   const uploadURL = `${apiProduct}${productId}/pictures`;
-
-      //   const upload = await fetch(uploadURL, {
-      //     method: "POST",
-      //     body: formDataImg,
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       Authorization: `Bearer ${claveToken}`,
-      //     },
-      //   });
-
-      //   if (!upload.ok) {
-      //     throw new Error("Error al subir imágenes");
-      //   }
-      // }
       if (formData.pictures && formData.pictures.length > 0) {
         const formDataImg = new FormData();
 

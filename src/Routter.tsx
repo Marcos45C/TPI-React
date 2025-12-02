@@ -5,6 +5,7 @@ import { DetalleProducto } from "./DetalleProducto";
 import { FormularioCategoria } from "./componentes/FormularioCategoria";
 import { FormularioProducto } from "./componentes/FormularioProducto";
 import { FormularioTag } from "./componentes/FormularioTag";
+import { AnadirTagsProducto } from "./componentes/AnadirTagsProducto";
 
 export const Routter = () => {
   return (
@@ -19,9 +20,11 @@ export const Routter = () => {
       <Route path="/categoria/editar" element={<FormularioCategoria />} />
 
       
-        {/* productos creacion y post o put */}
+        {/* productos creacion y post o put  y añadir tags*/}
         <Route path="/productos/nuevo" element={<FormularioProducto />} />
         <Route path="/productos/editar/" element={<FormularioProducto />} />
+        <Route path="/productos/añadirTags/" element={<AnadirTagsProducto />} />
+
 
         {/* tags creacion y post o put*/}
         <Route path="/tags/nuevo" element={<FormularioTag />} />

@@ -21,6 +21,7 @@ export const getProductis = async (): Promise<ProducInterface[]> => {
     price:variable.price,
     category_id:variable.category_id,
     id:variable.id,
-    pictures:variable.pictures
+    pictures:variable.pictures,
+    tags: variable.tags
     }));
 };
