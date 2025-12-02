@@ -13,7 +13,7 @@ export const Productos = ({ productos, selectedCategory,compraProduc }: Props) =
 
   // filtrar productos según la categoría seleccionada
   const filteredProducts = selectedCategory
-    ? productos.filter((prod) => prod.categoria_id === selectedCategory)
+    ? productos.filter((prod) => prod.category_id === selectedCategory)
     : productos; // si no hay seleccion, muestra todos
 
     //aca es para navevar entre componente y llevarle el id y que el componente haga una fetch

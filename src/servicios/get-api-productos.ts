@@ -1,6 +1,6 @@
 
 import type { ProducInterface } from "../api/interfaces/general-Interfaces";
-import { apiProduct } from "../api/url/refugioHuellitas";
+import { apiProduct, claveToken } from "../api/url/refugioHuellitas";
 
 
 export const getProductis = async (): Promise<ProducInterface[]> => {
@@ -9,7 +9,7 @@ export const getProductis = async (): Promise<ProducInterface[]> => {
       method:'GET',
         headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer div", 
+            Authorization: `Bearer ${claveToken}`,
             },  
         });
       if (!respuesta.ok) throw new Error(`Error ${respuesta.status}`);
@@ -19,8 +19,9 @@ export const getProductis = async (): Promise<ProducInterface[]> => {
     title: variable.title,
     description:variable.description,
     price:variable.price,
-    categoria_id:variable.category_id,
+    category_id:variable.category_id,
     id:variable.id,
-    pictures:variable.pictures
+    pictures:variable.pictures,
+    tags: variable.tags
     }));
 };

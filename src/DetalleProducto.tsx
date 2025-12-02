@@ -14,7 +14,7 @@ const mapApiProduct = (variable: any): ProducInterface => ({
   title: variable.title,
   description: variable.description,
   price: variable.price,
-  categoria_id: variable.category_id,
+  category_id: variable.category_id,
   id: variable.id,
   pictures: variable.pictures,
   tags: variable.tags || [], // Añadido por si acaso

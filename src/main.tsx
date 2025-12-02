@@ -8,10 +8,7 @@ import { Routter } from './Routter'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-    {/* <ListadoGeneral /> */}
-    {/* <CRUD/> */}
-    {/* <Formulario/> */}
-    <Routter/>
+      <Routter/>
     </BrowserRouter>
   </StrictMode>,
 )
