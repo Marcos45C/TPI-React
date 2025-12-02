@@ -83,3 +83,4 @@ La página tiene una navegación fluida, permitiendo al usuario buscar por produ
 - router
 - npm install react-hot-toast, para el manejo de alertas
 - npm install @stripe/stripe-js @stripe/react-stripe-js
+- react form
