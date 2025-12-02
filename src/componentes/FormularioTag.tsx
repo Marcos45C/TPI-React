@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import type { TagsInterface } from "../api/interfaces/general-Interfaces"; 
-import {  apiTags, claveToken } from "../api/url/refugioHuellitas"; 
+import {  apiTags, claveToken } from "../api/url/UrlGenerales"; 
 
 export const FormularioTag = () => {
   const location = useLocation();

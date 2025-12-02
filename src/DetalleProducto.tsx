@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 //Api y url
-import { apiProduct } from "./api/url/refugioHuellitas";
+import { apiProduct } from "./api/url/UrlGenerales";
 import type { ProducInterface } from "./api/interfaces/general-Interfaces";
 //Imagenes
 import imgDefecto from "./imagenes/logoCenter.png";
@@ -143,7 +143,7 @@ export const DetalleProducto = () => {
                     
                     {/* Título y Categoría */}
                     <span className="text-sm font-bold text-red-500 tracking-wider uppercase mb-2">
-                      { producto.categoria_id !==null ? `Categoría #${producto.categoria_id}` : 'Sin categoría'}
+                      { producto.category_id !==null ? `Categoría #${producto.category_id}` : 'Sin categoría'}
                     </span>
                     <h1 className="text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
                         {producto.title}

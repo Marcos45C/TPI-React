@@ -1,5 +1,5 @@
 import type { TagsInterface } from "../api/interfaces/general-Interfaces";
-import { apiTags, claveToken } from "../api/url/refugioHuellitas";
+import { apiTags, claveToken } from "../api/url/UrlGenerales";
 
 export const getTags = async (): Promise<TagsInterface[]> => {
   // hacemos la petición con fetch

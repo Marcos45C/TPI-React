@@ -6,7 +6,7 @@ import type {
 } from "../api/interfaces/general-Interfaces";
 import { getCategoris } from "../servicios/get-api-categoria";
 import { getProductis } from "../servicios/get-api-productos";
-import { apiCategory, apiProduct, apiTags } from "../api/url/refugioHuellitas";
+import { apiCategory, apiProduct, apiTags } from "../api/url/UrlGenerales";
 import { getTags } from "../servicios/get-api-tags";
 import { useNavigate } from "react-router-dom";
 import { ModalConfirmar } from "./ModalConfirmar";

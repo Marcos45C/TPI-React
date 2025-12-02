@@ -1,5 +1,5 @@
 import type { CategoryInterfaz } from "../api/interfaces/general-Interfaces";
-import { apiCategory } from "../api/url/refugioHuellitas";
+import { apiCategory } from "../api/url/UrlGenerales";
 
 
 export const getCategoris = async (): Promise<CategoryInterfaz[]> => {

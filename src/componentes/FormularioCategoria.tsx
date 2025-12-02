@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import type { CategoryInterfaz } from "../api/interfaces/general-Interfaces";
-import { apiCategory } from "../api/url/refugioHuellitas";
+import { apiCategory } from "../api/url/UrlGenerales";
 
 export const FormularioCategoria = () => {
   const location = useLocation();

@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getTags } from "../servicios/get-api-tags";
 import type { TagsInterface } from "../api/interfaces/general-Interfaces";
-import { apiProduct, claveToken } from "../api/url/refugioHuellitas";
+import { apiProduct, claveToken } from "../api/url/UrlGenerales";
 import toast, { Toaster } from "react-hot-toast";
 
 export const AnadirTagsProducto = () => {

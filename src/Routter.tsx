@@ -6,6 +6,7 @@ import { FormularioCategoria } from "./componentes/FormularioCategoria";
 import { FormularioProducto } from "./componentes/FormularioProducto";
 import { FormularioTag } from "./componentes/FormularioTag";
 import { AnadirTagsProducto } from "./componentes/AnadirTagsProducto";
+import { CategoriaPage } from "./CategoriaPage";
 
 export const Routter = () => {
   return (

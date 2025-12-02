@@ -5,7 +5,7 @@ import type {
 } from "../api/interfaces/general-Interfaces";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { apiProduct, claveToken } from "../api/url/refugioHuellitas";
+import { apiProduct, claveToken } from "../api/url/UrlGenerales";
 import { getCategoris } from "../servicios/get-api-categoria";
 
 export const FormularioProducto = () => {

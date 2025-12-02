@@ -1,6 +1,6 @@
 
 import type { ProducInterface } from "../api/interfaces/general-Interfaces";
-import { apiProduct, claveToken } from "../api/url/refugioHuellitas";
+import { apiProduct, claveToken } from "../api/url/UrlGenerales";
 
 
 export const getProductis = async (): Promise<ProducInterface[]> => {
