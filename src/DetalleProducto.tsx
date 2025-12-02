@@ -75,8 +75,10 @@ export const DetalleProducto = () => {
   }, [id]);
 
  //función para agregar al carrito
+ //Le agregue el descuento, además del 2x1 que agregue al CRUD.
  const handleAggregarCarrito = () => {
   if(producto) {
+
     setCompraProducto({...producto});
   }
  };

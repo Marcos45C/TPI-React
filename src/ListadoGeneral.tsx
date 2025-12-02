@@ -64,20 +64,13 @@ export const ListadoGeneral = () => {
 
   //agregue la logica de filtrado, para buscar por producto, descripcion o categoria
   const filteredProducts = productoss.filter((p) => {
-    const categoria = categoriass.find((c) => c.id == p.category_id);
     const textoBusqueda = searchTerm.toLowerCase(); //guarda el texto recibido y lo pasa a minuscul
-
-    const matchesCategory =
-      selectedCategory === null || p.category_id === selectedCategory;
-
-    const categoriaExiste = categoria?.title?.toLowerCase() ?? ""; //comprueba que exista la categoria
 
     const matchesSearch = //aca se basa la logica del buscado
       p.title.toLowerCase().includes(textoBusqueda) ||
-      p.description?.toLowerCase().includes(textoBusqueda) ||
-      categoriaExiste?.includes(textoBusqueda);
+      p.description?.toLowerCase().includes(textoBusqueda);
 
-    return matchesCategory && matchesSearch; //retorna lo buscado a tiempo real
+    return matchesSearch; //retorna lo buscado a tiempo real
   });
 
   //Pantalla de carga
@@ -132,7 +125,7 @@ export const ListadoGeneral = () => {
         <div className="relative max-w-lg mx-auto mb-10">
           <input
             type="text"
-            placeholder="🔎 Buscar producto, descripcion o categoria..."
+            placeholder="🔎 Buscar producto, descripcion"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full py-3 px-6 text-gray-700 bg-white border border-gray-300 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 placeholder-gray-400"

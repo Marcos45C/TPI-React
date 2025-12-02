@@ -248,7 +248,7 @@ export const CRUD = () => {
                             <tr>
                                 <th className="py-3 px-4 border-b text-left">ID</th>
                                 <th className="py-3 px-4 border-b text-left">TITULO</th>
-                                <th className="py-3 px-4 border-b text-left">DESCRIPCION</th>
+                                
                                 {/* Se fija el ancho para que coincida con la tabla de Productos */}
                                 <th className="py-3 px-4 border-b text-center min-w-[12rem]">ACCIONES</th>
                             </tr>
@@ -263,7 +263,6 @@ export const CRUD = () => {
                                     <td className="py-3 px-4 border-b font-semibold">
                                         {cat.title}
                                     </td>
-                                    <td className="py-3 px-4 border-b">{cat.description}</td>
                                     
                                     <td className="py-3 px-4 border-b text-center space-x-2">
                                         <div className="inline-flex gap-2 justify-end w-full"> 
