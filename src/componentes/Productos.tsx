@@ -46,10 +46,23 @@ export const Productos = ({
                   }
                   alt={prod.title}
                   className="aspect-square w-full mix-blend-multiply brightness-110 object-cover"
-                />
+                />  
               </div>
+      
               <div className="flex-1 p-3 bg-white flex flex-col justify-between">
                 <h2 className="text-xl font-bold mb-1">{prod.title}</h2>
+                 {prod.tags && prod.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-2 mb-3">
+                    {prod.tags.map((tag: any, index: number) => (
+                      <span 
+                        key={index} 
+                        className="text-[10px] uppercase font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-full border border-blue-100"
+                      >
+                        #{tag.title}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <p className="text-gray-500 mb-2">{prod.description}</p>
                 {prod.price && (
                   <div className="text-2xl font-semibold text-green-600">

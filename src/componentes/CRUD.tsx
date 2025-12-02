@@ -327,7 +327,7 @@ export const CRUD = () => {
                                         {prod.title}
                                     </td>
                                     <td className="py-3 px-4 border-b">
-                                        {prod.category_id || "sin categoría"}
+                                        {categoriass.find((c) => c.id === prod.category_id)?.title || "Sin categoría"}
                                     </td>
                                     <td className="py-3 px-4 border-b text-green-600 font-medium">
                                         ${prod.price ?? "N/A"}

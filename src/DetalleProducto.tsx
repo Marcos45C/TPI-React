@@ -15,6 +15,7 @@ const mapApiProduct = (variable: any): ProducInterface => ({
   description: variable.description,
   price: variable.price,
   category_id: variable.category_id,
+  category_title: variable.category?.title || "sin categoria", //directamente desde aca se define si tiene o no categoria, más simple.
   id: variable.id,
   pictures: variable.pictures,
   tags: variable.tags || [], // Añadido por si acaso
@@ -143,7 +144,7 @@ export const DetalleProducto = () => {
                     
                     {/* Título y Categoría */}
                     <span className="text-sm font-bold text-red-500 tracking-wider uppercase mb-2">
-                      { producto.category_id !==null ? `Categoría #${producto.category_id}` : 'Sin categoría'}
+                     { producto.category_title }
                     </span>
                     <h1 className="text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
                         {producto.title}

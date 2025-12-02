@@ -12,6 +12,7 @@ import { Categoriasss } from "./componentes/Categorias";
 import { Productos } from "./componentes/Productos";
 import { Carrito } from "./componentes/Carrito";
 import { Footer } from "./componentes/Footer";
+
 //imagen de carga
 import logoCarga from "./imagenes/logoCarga.png";
 
