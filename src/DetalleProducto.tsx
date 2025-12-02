@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 //Api y url
-import { apiProduct } from "./api/url/UrlGenerales";
+import { apiProduct, claveToken } from "./api/url/UrlGenerales";
 import type { ProducInterface } from "./api/interfaces/general-Interfaces";
 //Imagenes
 import imgDefecto from "./imagenes/logoCenter.png";
@@ -50,7 +50,7 @@ export const DetalleProducto = () => {
             method: 'GET',
             headers: {
               "Accept": "application/json",
-              "Authorization": "Bearer div",
+              "Authorization": `Bearer ${claveToken}`
             },
           });
 

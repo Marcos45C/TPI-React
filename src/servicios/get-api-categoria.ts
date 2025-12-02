@@ -1,5 +1,5 @@
 import type { CategoryInterfaz } from "../api/interfaces/general-Interfaces";
-import { apiCategory } from "../api/url/UrlGenerales";
+import { apiCategory, claveToken } from "../api/url/UrlGenerales";
 
 
 export const getCategoris = async (): Promise<CategoryInterfaz[]> => {
@@ -8,7 +8,7 @@ export const getCategoris = async (): Promise<CategoryInterfaz[]> => {
     method:'GET',
           headers: {
             "Accept": "application/json",
-            "Authorization": "Bearer div", 
+            "Authorization": `Bearer ${claveToken}`, 
           },  
         });
         if (!respuesta.ok) throw new Error(`Error ${respuesta.status}`);
