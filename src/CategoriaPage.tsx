@@ -19,9 +19,9 @@ export const CategoriaPage = () => {
 
   const [categoria, setCategoria] = useState<CategoryInterfaz | null>(null);
   const [productos, setProductos] = useState<ProducInterface[]>([]);
-  const [compraProducto, setCompraProducto] = useState<ProducInterface | null>(
-    null
-  );
+  const [compraProducto, setCompraProducto] = useState<ProducInterface | null>(null);
+
+  
 
   useEffect(() => {
     getCategoris()
