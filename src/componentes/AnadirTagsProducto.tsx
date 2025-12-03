@@ -16,6 +16,7 @@ export const AnadirTagsProducto = () => {
   const [tagsSeleccionados, setTagsSeleccionados] = useState<number[]>([]);
 
   useEffect(() => {
+    toast.dismiss();
     if (!producto) {
       navigate("/CRUD");
       return;
@@ -35,7 +36,7 @@ export const AnadirTagsProducto = () => {
       })
       .catch((i) => {
         console.error("error al cargar tags:", i);
-        toast.error("Error al cargar la lista de tags."); // Opcional: mostrar error
+        toast.error("Error al cargar la lista de tags."); // 
       })
       .finally(() => {
         setCargandoTags(false);
@@ -79,7 +80,8 @@ export const AnadirTagsProducto = () => {
   };
 
   return (
-    <div className="p-6 max-w-lg mx-auto bg-white shadow rounded">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="p-6 max-w-lg w-full mx-auto bg-white shadow rounded">
       <h2 className="text-xl font-semibold mb-4">
         Añadir Tags a: {producto?.title}
       </h2>
@@ -133,6 +135,7 @@ export const AnadirTagsProducto = () => {
       </button>
       </div>
       <Toaster position="top-center" />
+    </div>
     </div>
   );
 };
