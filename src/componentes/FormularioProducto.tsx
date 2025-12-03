@@ -8,10 +8,9 @@ import { useForm } from "react-hook-form";
 import { apiProduct, claveToken } from "../api/url/UrlGenerales";
 import { getCategoris } from "../servicios/get-api-categoria";
 
-// Importación para el spinner (Asegúrate de que la ruta sea correcta)
 import logoCarga from "../imagenes/logoCarga.png";
 
-// --- Componente Spinner con estilo "Supermercado" ---
+
 const LoadingSpinner = ({ mensaje, esEdicion = false }: { mensaje: string, esEdicion?: boolean }) => (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-red-500 mb-4"></div>
@@ -31,7 +30,7 @@ const LoadingSpinner = ({ mensaje, esEdicion = false }: { mensaje: string, esEdi
     </div>
 );
 
-// --- Componente de Error Personalizado ---
+
 const ErrorMessage = ({ errorText }: { errorText: string }) => (
     <div className="flex flex-col items-center justify-center min-h-screen bg-red-50 p-6">
         <div className="text-4xl text-red-600 mb-4">🚨</div>
@@ -48,7 +47,7 @@ const ErrorMessage = ({ errorText }: { errorText: string }) => (
     </div>
 );
 
-// --- COMPONENTE PRINCIPAL ---
+
 export const FormularioProducto = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -67,9 +66,9 @@ export const FormularioProducto = () => {
         defaultValues: { title: "", description: "", price: 0, category_id: null },
     });
 
-    // Estado para la carga del SUBMIT
+    
     const [cargando, setCargando] = useState(false); 
-    // Estado para la carga inicial de CATEGORÍAS
+
     const [loadingInitial, setLoadingInitial] = useState(true); 
     const [error, setError] = useState<string | null>(null);
     const [categorias, setCategorias] = useState<CategoryInterfaz[]>([]);
@@ -83,7 +82,7 @@ export const FormularioProducto = () => {
         }
     }, [productoState, navigate, location.pathname]);
 
-    // Lógica original de carga de categorías
+
     useEffect(() => {
         getCategoris()
             .then((cats) => {
@@ -99,20 +98,19 @@ export const FormularioProducto = () => {
                 setError("Error al cargar categorías o datos de edición.");
             })
             .finally(() => {
-                setLoadingInitial(false); // Desactiva la carga inicial al finalizar
+                setLoadingInitial(false); 
             });
-    }, [esEdicion, productoState, reset]); // Añadidas dependencias faltantes
+    }, [esEdicion, productoState, reset]); 
 
-    // Lógica original de submit
     const onSubmit = async (formData: ProducInterface) => {
         setError(null);
-        setCargando(true); // Activa el spinner de submit
+        setCargando(true); 
 
         try {
             const method = esEdicion ? "PUT" : "POST";
             const url = esEdicion ? `${apiProduct}${productoState!.id}/` : apiProduct;
 
-            // 1. Guardar metadatos del producto
+            // guardo el producto
             const res = await fetch(url, {
                 method,
                 headers: {
@@ -135,13 +133,13 @@ export const FormularioProducto = () => {
             const savedProduct = await res.json(); 
             const productId = esEdicion ? productoState!.id : savedProduct.id;
 
-            // 2. Subir imágenes
+            // subo la imagen
             if (formData.pictures && formData.pictures.length > 0) {
                 const formDataImg = new FormData();
 
-                // Aquí se mantiene la lógica original de iteración.
+                
                 for (let img of formData.pictures as unknown as File[]) {
-                    // Asegúrate de que "files" sea el campo correcto que espera tu API
+                   
                     formDataImg.append("files", img); 
                 }
 
@@ -170,18 +168,13 @@ export const FormularioProducto = () => {
         }
     };
 
-    // --- RENDERIZADO CONDICIONAL CON UX MEJORADA ---
 
-    // 1. Mostrar pantalla de error (si ocurrió un error en la carga inicial o el submit)
     if (error) return <ErrorMessage errorText={error} />;
-    
-    // 2. Mostrar spinner de carga inicial (mientras se cargan las categorías)
+
     if (loadingInitial) return <LoadingSpinner mensaje="Cargando categorías y formulario..." />;
-    
-    // 3. Mostrar spinner de submit (mientras se envía el formulario)
+ 
     if (cargando) return <LoadingSpinner mensaje={esEdicion ? "Guardando cambios del producto..." : "Creando nuevo producto..."} esEdicion={esEdicion} />;
 
-    // 4. Mostrar el formulario
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-96">
@@ -190,7 +183,7 @@ export const FormularioProducto = () => {
                 </h2>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    {/* TÍTULO */}
+                    {/* TITULO */}
                     <div>
                         <label className="block text-gray-700 font-medium">Título</label>
                         <input
@@ -209,7 +202,7 @@ export const FormularioProducto = () => {
                         )}
                     </div>
 
-                    {/* DESCRIPCIÓN */}
+                    {/* DESCRIPCION */}
                     <div>
                         <label className="block text-gray-700 font-medium">
                             Descripción
@@ -249,7 +242,7 @@ export const FormularioProducto = () => {
                         )}
                     </div>
 
-                    {/* Selector de Categoria */}
+                    {/* selector de Categoria */}
                     <div>
                         <label className="block text-gray-700 font-medium">Categoría</label>
                         <select
@@ -272,7 +265,7 @@ export const FormularioProducto = () => {
                         )}
                     </div>
 
-                    {/* Subir imagenes */}
+                    {/* subir imagenes */}
                     <div>
                         <label className="block text-gray-700 font-medium">Imágenes</label>
 
@@ -284,14 +277,9 @@ export const FormularioProducto = () => {
                                 const newFiles = e.target.files
                                     ? Array.from(e.target.files)
                                     : [];
-                                
-                                // Se mantiene tu lógica original de `setValue`
-                                setValue("pictures", newFiles as any); 
-                                
+                                setValue("pictures", newFiles as any);       
                                 setPreview((prev) => [
-                                    // Filtra URLs existentes para no crear nuevas URLs temporales
                                     ...prev.filter(item => typeof item === 'string' && !item.startsWith('blob:') && item.startsWith('/uploads')), 
-                                    // Nuevas imágenes con URL temporal
                                     ...newFiles.map((f) => URL.createObjectURL(f)), 
                                 ]);
                             }}
