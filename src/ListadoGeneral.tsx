@@ -7,7 +7,9 @@ import type {
   CategoryInterfaz,
   ProducInterface,
 } from "./api/interfaces/general-Interfaces";
+import { Link } from "react-router-dom"; 
 //Componentes
+import { SelectorRol } from "./componentes/SelectorRol";
 import { Categoriasss } from "./componentes/Categorias";
 import { Productos } from "./componentes/Productos";
 import { Carrito } from "./componentes/Carrito";
@@ -62,9 +64,9 @@ export const ListadoGeneral = () => {
     setCompraProducto({ ...producto }); //esto lo puse asi porque tuve que reenderizar los productos para que se actualicen
   };
 
-  //agregue la logica de filtrado, para buscar por producto, descripcion o categoria
+  //agregue la logica de filtrado, para buscar por producto, descripcion
   const filteredProducts = productoss.filter((p) => {
-    const textoBusqueda = searchTerm.toLowerCase(); //guarda el texto recibido y lo pasa a minuscul
+    const textoBusqueda = searchTerm.toLowerCase(); //guarda el texto recibido y lo pasa a minuscula
 
     const matchesSearch = //aca se basa la logica del buscado
       p.title.toLowerCase().includes(textoBusqueda) ||
@@ -72,6 +74,8 @@ export const ListadoGeneral = () => {
 
     return matchesSearch; //retorna lo buscado a tiempo real
   });
+
+  const esAdmin = localStorage.getItem("rolUsuario") === "admin";
 
   //Pantalla de carga
   if (isLoading) {
@@ -98,12 +102,28 @@ export const ListadoGeneral = () => {
   return (
     // Esto hace que las tarjetas blancas de los productos resalten más (efecto profundidad diria io).
     <div className="min-h-screen bg-gray-50 pb-12">
+      <div>
+       <SelectorRol/>
+       </div>
+       {/*La condional, si admin es true muestra el panel de crud*/}
+          {esAdmin && (  
+            <Link to="/Crud" 
+            className="fixed bottom-4 mt-12 left-2 z-30 flex items-center gap-2 bg-gray-900 text-white px-6 py-4 rounded-full hover:bg-black  text-sm font-medium transform hover:-translate-y-0.5">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+             <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15v-.09a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09c.7 0 1.33-.4 1.51-1A1.65 1.65 0 0 0 4.6 8.09l-.06-.06A2 2 0 1 1 7.37 4.2l.06.06c.38.38.9.51 1.39.33.45-.16.94-.25 1.44-.25.5 0 .99.09 1.44.25.49.18 1.01.05 1.39-.33l.06-.06A2 2 0 1 1 16.63 7.8l-.06.06c-.18.58-.06 1.24.33 1.7.27.31.68.45 1.06.39.49-.08.98-.02 1.44.17.18.09.34.22.46.39.16.24.22.53.17.81z"/>
+              </svg>
+              Control
+            </Link>     
+          )}
       {/* class="bg-white min-h-screen pb-8 flex flex-col" */}
       {/* Contenedor principal centrado */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/*Encabezado, con color gris oscuro y espacios entre letras*/}
         <header className="mb-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+          <div>
+          <h2 
+          className="text-3xl font-extrabold text-gray-900 tracking-tight">
             {" "}
             Listado General de Categorías{" "}
           </h2>
@@ -111,6 +131,8 @@ export const ListadoGeneral = () => {
             Explora nuestros productos y agrega lo que quieras al carrito para
             llevarte!
           </p>
+          </div>
+          
         </header>
 
         {/*Seccion de las categorias*/}

@@ -10,6 +10,9 @@ import { Productos } from "./componentes/Productos";
 import { Carrito } from "./componentes/Carrito";
 import { Footer } from "./componentes/Footer";
 
+import { Link } from "react-router-dom";
+import { SelectorRol } from "./componentes/SelectorRol";
+
 export const CategoriaPage = () => {
   const { id } = useParams<{ id: string }>(); // obtiene el id de la URL
   const navigate = useNavigate();
@@ -40,8 +43,24 @@ export const CategoriaPage = () => {
     setCompraProducto({ ...producto });
   };
 
+   const esAdmin = localStorage.getItem("rolUsuario") === "admin";
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-between">
+      <div>
+      <SelectorRol/>
+             </div>
+             {/*La condional, si admin es true muestra el panel de crud*/}
+                {esAdmin && (  
+                  <Link to="/Crud" 
+                  className="fixed bottom-4 mt-12 left-2 z-30 flex items-center gap-2 bg-gray-900 text-white px-6 py-4 rounded-full hover:bg-black  text-sm font-medium transform hover:-translate-y-0.5">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                   <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15v-.09a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09c.7 0 1.33-.4 1.51-1A1.65 1.65 0 0 0 4.6 8.09l-.06-.06A2 2 0 1 1 7.37 4.2l.06.06c.38.38.9.51 1.39.33.45-.16.94-.25 1.44-.25.5 0 .99.09 1.44.25.49.18 1.01.05 1.39-.33l.06-.06A2 2 0 1 1 16.63 7.8l-.06.06c-.18.58-.06 1.24.33 1.7.27.31.68.45 1.06.39.49-.08.98-.02 1.44.17.18.09.34.22.46.39.16.24.22.53.17.81z"/>
+                    </svg>
+                    Control
+                  </Link>     
+                )}
       <div className="p-8 max-w-6xl mx-auto w-full flex-grow">
         {/*para volver a la pagina principal*/}
         <div className="mb-6">

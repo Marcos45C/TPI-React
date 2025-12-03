@@ -139,6 +139,22 @@ export const CRUD = () => {
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen max-w-full overflow-x-hidden">
+      <div className="mb-4 flex justify-start">
+        <button
+          onClick={() => navigate("/")}
+          className="group flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-600 font-medium rounded-lg shadow-sm hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-all duration-200 active:scale-95">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            strokeWidth={2} 
+            stroke="currentColor" 
+            className="w-5 h-5 transition-transform group-hover:-translate-x-1">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+          Volver al Super
+        </button>
+      </div>
       <h1 className="text-3xl font-bold mb-8 text-gray-800 text-center">
         CRUD
       </h1>
