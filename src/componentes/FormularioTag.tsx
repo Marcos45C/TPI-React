@@ -88,8 +88,8 @@ export const FormularioTag = () => {
 
   
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+    <div className="flex justify-center items-center min-h-screen bg-[#708090]">
+      <div className="bg-[#DCDCDC] p-6 rounded-lg shadow-lg w-96">
         <h2 className="text-xl font-semibold mb-4 text-gray-800">
           {esEdicion ? "Editar Tag" : "Crear Nuevo Tag"}
         </h2>
@@ -120,7 +120,7 @@ export const FormularioTag = () => {
             <button
               type="button"
               onClick={() => navigate(-1)}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded"
+              className="bg-gray-400 hover:bg-[#708090] text-gray-800 px-4 py-2 rounded"
             >
               Volver
             </button>

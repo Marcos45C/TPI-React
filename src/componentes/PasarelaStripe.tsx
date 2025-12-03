@@ -166,7 +166,7 @@ const CheckoutForm = ({
                 height="24"
                 viewBox="0 0 24 24"
               >
-                <title>Pagar (tarjeta)</title>{" "}
+                <title>Pagar (tarjeta)</title>
                 {/**debería parecer esto al posar el mouse encima del icono */}
                 <path
                   fill="currentColor"

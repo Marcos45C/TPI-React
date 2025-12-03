@@ -124,8 +124,8 @@ export const ListadoGeneral = () => {
           <div>
           <h2 
           className="text-3xl font-extrabold text-gray-900 tracking-tight">
-            {" "}
-            Listado General de Categorías{" "}
+            
+            Listado General de Categorías
           </h2>
           <p className="mt-2 text-sm text-gray-500">
             Explora nuestros productos y agrega lo que quieras al carrito para

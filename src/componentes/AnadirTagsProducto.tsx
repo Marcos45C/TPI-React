@@ -80,8 +80,8 @@ export const AnadirTagsProducto = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-    <div className="p-6 max-w-lg w-full mx-auto bg-white shadow rounded">
+    <div className="min-h-screen flex items-center justify-center bg-[#708090]">
+    <div className="p-6 max-w-lg w-full mx-auto bg-[#DCDCDC] shadow rounded">
       <h2 className="text-xl font-semibold mb-4">
         Añadir Tags a: {producto?.title}
       </h2>
@@ -117,13 +117,13 @@ export const AnadirTagsProducto = () => {
       <div className="flex justify-between pt-4">
         
         <button
-          className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded transition"
+          className="bg-gray-400 hover:bg-[#708090] text-gray-800 px-4 py-2 rounded"
           onClick={() => navigate(-1)} 
         >
           Cancelar
         </button>
       <button
-        className={`bg-blue-600 text-white px-4 py-2 rounded ${
+        className={`bg-green-600 hover:bg-green-700 px-4 py-2 rounded ${
           cargandoTags || tagsDisponibles.length === 0
             ? "opacity-50 cursor-not-allowed"
             : ""
