@@ -127,7 +127,7 @@ const CheckoutForm = ({
                 <path
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="1.8"
+                  strokeWidth="1.8"
                   d="M12 3L2.5 20h19L12 3z"
                 />
                 <line
@@ -136,8 +136,8 @@ const CheckoutForm = ({
                   x2="12"
                   y2="15"
                   stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
+                  strokeWidth="1.8"
+                  strokeWinecap="round"
                 />
                 <circle cx="12" cy="18" r="1" fill="currentColor" />
               </svg>
