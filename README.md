@@ -27,7 +27,7 @@ Permite a los usuarios(clientes) filtrar por categorías, ver detalles y agregar
 El proyecto mejoró para incluir enrutamiento, además de una mejor division de archivos. 
 
 ### 1. Configuración y Tipos
-* **`refugioHuellitas.ts`**: Archivo de configuración central donde se almacenan las URLs de las APIs (`categoria`, `producto`, etc.).
+* **`UrlGenerales.ts`**: Archivo de configuración central donde se almacenan las URLs de las APIs (`categoria`, `producto`, etc.).
 * **`general-Interfaces.ts`**: Define los contratos de datos (Interfaces de TypeScript) para asegurar que los objetos `Producto`, `Categoria`, etc., se usen correctamente en toda la app.
 * **Otro punto:**
 El proyecto sigue un patrón de **Componentes Contenedores y Componentes de Presentación** para separar responsabilidades y mantener la prolijidad.
