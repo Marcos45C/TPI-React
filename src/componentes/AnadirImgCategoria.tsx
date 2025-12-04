@@ -95,10 +95,10 @@ export const AnadirImgCategoria = () => {
           />
         )}
 
-        {/* ERROR LOCAL */}
+      
         {error && <p className="text-red-600 text-sm text-center">{error}</p>}
 
-        {/* BOTÓN SUBIR */}
+        
         <button
           type="submit"
           disabled={cargando}
@@ -111,7 +111,6 @@ export const AnadirImgCategoria = () => {
           {cargando ? "Subiendo..." : "Subir Imagen"}
         </button>
 
-        {/* BOTÓN VOLVER */}
         <button
           type="button"
           onClick={() => navigate(-1)}
