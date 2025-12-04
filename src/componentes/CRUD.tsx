@@ -137,8 +137,7 @@ export const CRUD = () => {
     navigate("/tags/nuevo");
   };
 
-  return (
-    <div className="p-6 bg-[#708090] min-h-screen max-w-full overflow-x-hidden">
+  return (<div className="p-6 bg-[#708090] min-h-screen max-w-full overflow-x-hidden">
       <div className="mb-4 flex justify-start">
         <button
           onClick={() => navigate("/")}
@@ -562,4 +561,4 @@ export const CRUD = () => {
       />
     </div>
   );
-};
+}

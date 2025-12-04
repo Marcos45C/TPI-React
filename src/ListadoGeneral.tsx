@@ -100,8 +100,8 @@ export const ListadoGeneral = () => {
   }
 
   return (
-    // Esto hace que las tarjetas blancas de los productos resalten más (efecto profundidad diria io).
-    <div className="min-h-screen bg-gray-50 pb-12">
+    // Esto hace que las tarjetas blancas de los productos resalten más.
+    <div className="min-h-screen bg-gray-50">
       <div>
        <SelectorRol/>
        </div>
@@ -109,22 +109,35 @@ export const ListadoGeneral = () => {
           {esAdmin && (  
             <Link to="/Crud" 
             className="fixed bottom-4 mt-12 left-2 z-30 flex items-center gap-2 bg-gray-900 text-white px-6 py-4 rounded-full hover:bg-black  text-sm font-medium transform hover:-translate-y-0.5">
-             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-             <circle cx="12" cy="12" r="3"/>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15v-.09a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09c.7 0 1.33-.4 1.51-1A1.65 1.65 0 0 0 4.6 8.09l-.06-.06A2 2 0 1 1 7.37 4.2l.06.06c.38.38.9.51 1.39.33.45-.16.94-.25 1.44-.25.5 0 .99.09 1.44.25.49.18 1.01.05 1.39-.33l.06-.06A2 2 0 1 1 16.63 7.8l-.06.06c-.18.58-.06 1.24.33 1.7.27.31.68.45 1.06.39.49-.08.98-.02 1.44.17.18.09.34.22.46.39.16.24.22.53.17.81z"/>
+             <svg 
+             xmlns="http://www.w3.org/2000/svg" 
+             width="24" 
+             height="24"
+              viewBox="0 0 24 24" 
+              fill="none"
+               stroke="currentColor" 
+               strokeWidth="1.8" 
+               strokeLinecap="round" 
+               strokeLinejoin="round" 
+               aria-hidden="true">
+             <circle 
+             cx="12" 
+             cy="12" 
+             r="3"/>
+              <path
+               d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15v-.09a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09c.7 0 1.33-.4 1.51-1A1.65 1.65 0 0 0 4.6 8.09l-.06-.06A2 2 0 1 1 7.37 4.2l.06.06c.38.38.9.51 1.39.33.45-.16.94-.25 1.44-.25.5 0 .99.09 1.44.25.49.18 1.01.05 1.39-.33l.06-.06A2 2 0 1 1 16.63 7.8l-.06.06c-.18.58-.06 1.24.33 1.7.27.31.68.45 1.06.39.49-.08.98-.02 1.44.17.18.09.34.22.46.39.16.24.22.53.17.81z"/>
               </svg>
               Control
             </Link>     
           )}
       {/* class="bg-white min-h-screen pb-8 flex flex-col" */}
       {/* Contenedor principal centrado */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        {/*Encabezado, con color gris oscuro y espacios entre letras*/}
-        <header className="mb-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-10 lg:pt-10">
+        {/*Encabezado*/}
+        <header className="mb-8 text-center md:text-left">
           <div>
           <h2 
-          className="text-3xl font-extrabold text-gray-900 tracking-tight">
-            
+          className="text-3xl md:text-5xl font-extrabold pt-10 text-gray-900 tracking-tight">
             Listado General de Categorías
           </h2>
           <p className="mt-2 text-sm text-gray-500">
@@ -136,7 +149,7 @@ export const ListadoGeneral = () => {
         </header>
 
         {/*Seccion de las categorias*/}
-        <section className="mb-10">
+        <section className="mb-12">
           <Categoriasss
             categories={categoriass}
             onCategorySelect={handleCategorySelect}
@@ -144,7 +157,7 @@ export const ListadoGeneral = () => {
         </section>
 
         {/**Barra de busqueda */}
-        <div className="relative max-w-lg mx-auto mb-10">
+        <div className="relative w-full max-w-lg mx-auto mb-12">
           <input
             type="text"
             placeholder="🔎 Buscar producto, descripcion"
@@ -156,8 +169,8 @@ export const ListadoGeneral = () => {
 
         {/*Seccion de productos*/}
         <section>
-          {/*agrege un titulo*/}
-          <div className="flex items-center justify-between mb-6">
+          {/*agregue un titulo*/}
+          <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-3 sm:gap-0">
             <h3 className="text-xl font-bold text-gray-800">
               {selectedCategory
                 ? "Productos de la categoría"

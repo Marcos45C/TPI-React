@@ -117,32 +117,54 @@ export const DetalleProducto = () => {
     ? `http://161.35.104.211:8000${producto.pictures[0]}`
     : imgDefecto;
 
-    const esAdmin = localStorage.getItem("rolUsuario") === "admin";
+  const tieneTagDescuento = producto.tags?.some((t: any) => t.title.toLowerCase().includes("descuento"));
+  const precioOriginal = producto.price || 0;
+  const porcentaje = 15;
+  const precioFinal = tieneTagDescuento ? precioOriginal - (precioOriginal * (porcentaje / 100)) : precioOriginal;
+   
+  const esAdmin = localStorage.getItem("rolUsuario") === "admin";
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-between">
       <div>
-      <SelectorRol/>
-             </div>
+       <SelectorRol/>
+      </div>
              {/*La condional, si admin es true muestra el panel de crud*/}
-                {esAdmin && (  
-                  <Link to="/Crud" 
-                  className="fixed bottom-4 mt-12 left-2 z-30 flex items-center gap-2 bg-gray-900 text-white px-6 py-4 rounded-full hover:bg-black  text-sm font-medium transform hover:-translate-y-0.5">
-                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                   <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15v-.09a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09c.7 0 1.33-.4 1.51-1A1.65 1.65 0 0 0 4.6 8.09l-.06-.06A2 2 0 1 1 7.37 4.2l.06.06c.38.38.9.51 1.39.33.45-.16.94-.25 1.44-.25.5 0 .99.09 1.44.25.49.18 1.01.05 1.39-.33l.06-.06A2 2 0 1 1 16.63 7.8l-.06.06c-.18.58-.06 1.24.33 1.7.27.31.68.45 1.06.39.49-.08.98-.02 1.44.17.18.09.34.22.46.39.16.24.22.53.17.81z"/>
-                    </svg>
-                    Control
-                  </Link>     
-                )}
-      <div className="max-w-6xl mx-auto p-6 w-full flex-grow">
+         {esAdmin && (  
+          <Link to="/Crud" 
+             className="fixed bottom-6 mt-12 left-2 z-30 flex items-center gap-2 bg-gray-900 text-white px-6 py-4 rounded-full hover:bg-black  text-sm font-medium transform hover:-translate-y-0.5">
+             <svg 
+             xmlns="http://www.w3.org/2000/svg"
+              width="24"
+               height="24"
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="1.8" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                aria-hidden="true">             
+              <circle cx="12" cy="12" r="3"/>
+               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15v-.09a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09c.7 0 1.33-.4 1.51-1A1.65 1.65 0 0 0 4.6 8.09l-.06-.06A2 2 0 1 1 7.37 4.2l.06.06c.38.38.9.51 1.39.33.45-.16.94-.25 1.44-.25.5 0 .99.09 1.44.25.49.18 1.01.05 1.39-.33l.06-.06A2 2 0 1 1 16.63 7.8l-.06.06c-.18.58-.06 1.24.33 1.7.27.31.68.45 1.06.39.49-.08.98-.02 1.44.17.18.09.34.22.46.39.16.24.22.53.17.81z"/>
+            </svg>
+             Control
+         </Link>         
+      )}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow pt-28">
 
       {/**Boton para volver a listadoGeneral*/}
       <nav className="flex items-center text-sm text-gray-500 mb-8">
           <button onClick={() => navigate("/")}
             className="flex items-center gap-2 text-gray-600 hover:text-red-600 font-medium transition-colors duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M14 4l-8 8 8 8 1.4-1.4L9.8 12l5.6-5.6L14 4z"/>
+            
+            <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="24" 
+            height="24" 
+            viewBox="0 0 24 24">
+              <path 
+              fill="currentColor" 
+              d="M14 4l-8 8 8 8 1.4-1.4L9.8 12l5.6-5.6L14 4z"/>
             </svg>
              volver al inicio
           </button>
@@ -171,9 +193,27 @@ export const DetalleProducto = () => {
                         {producto.title}
                     </h1>
 
-                    {/* Precio */}
-                    <div className="text-5xl font-bold text-gray-800 mb-6">
-                        ${producto.price}
+                    {/* Precio Modificado con Descuento */}
+                    <div className="mb-6">
+                      {tieneTagDescuento ? (
+                        <div>
+                          <div className="flex items-center gap-3 mb-1">
+                            <span className="text-xl text-gray-400 line-through decoration-red-500">
+                              ${precioOriginal}
+                            </span>
+                            <span className="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wide">
+                              {porcentaje}% OFF
+                            </span>
+                          </div>
+                          <div className="text-5xl font-bold text-red-600">
+                            ${precioFinal.toFixed(2)}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="text-5xl font-bold text-gray-800">
+                          ${precioOriginal}
+                        </div>
+                      )}
                     </div>
 
                     {/* Descripción */}
@@ -185,7 +225,9 @@ export const DetalleProducto = () => {
                     {producto.tags && producto.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2 mb-8">
                             {producto.tags.map((tag: any, index: number) => (
-                                <span key={index} className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold uppercase">
+                                <span 
+                                key={index} 
+                                className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold uppercase">
                                     #{tag.title} 
                                 </span>
                              ) 
