@@ -9,10 +9,10 @@ Permite a los usuarios(clientes) filtrar por categorías, ver detalles y agregar
 👨‍💻- Lucas Rodríguez <br>
 
 ### Instalaciones necesarias
-- router
+- router - npm i react-router-dom
 - npm install react-hot-toast, para el manejo de alertas
 - npm install @stripe/stripe-js @stripe/react-stripe-js
-- react form
+- react form- npm install react-hook-form
   
 ##  💻 Tecnologías Utilizadas
 
