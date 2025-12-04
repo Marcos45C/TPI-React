@@ -7,6 +7,7 @@ import { FormularioProducto } from "./componentes/FormularioProducto";
 import { FormularioTag } from "./componentes/FormularioTag";
 import { AnadirTagsProducto } from "./componentes/AnadirTagsProducto";
 import { CategoriaPage } from "./CategoriaPage";
+import { AnadirImgCategoria } from "./componentes/AnadirImgCategoria";
 
 export const Routter = () => {
   return (
@@ -19,6 +20,7 @@ export const Routter = () => {
       {/* categorias creacion y post o put*/}
       <Route path="/categoria/nueva" element={<FormularioCategoria />} />
       <Route path="/categoria/editar" element={<FormularioCategoria />} />
+      <Route path="/categoria/subirImg/:id" element={<AnadirImgCategoria />} />
 
       
         {/* productos creacion y post o put  y añadir tags*/}
@@ -32,7 +34,8 @@ export const Routter = () => {
         <Route path="/tags/editar" element={<FormularioTag />} />
 
       {/* crear un componente cuando ponga cualquier url  */}
-      <Route path="/categoria/:id" element={<CategoriaPage />} /> {/*la nueva ruta*/}
+      <Route path="/categoria/:id" element={<CategoriaPage />} /> la nueva ruta
+
       {/* crear una pagina con error 404  */}
       <Route path="*" element={<ListadoGeneral />} />
     </Routes>

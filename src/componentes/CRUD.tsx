@@ -20,8 +20,8 @@ export const CRUD = () => {
   const [tags, setTags] = useState<TagsInterface[]>([]);
 
   const [openCategoria, setOpenCategoria] = useState<boolean>(true);
-  const [openProducto, setOpenProducto] = useState<boolean>(true);
-  const [openTags, setOpenTags] = useState<boolean>(true);
+  const [openProducto, setOpenProducto] = useState<boolean>(false);
+  const [openTags, setOpenTags] = useState<boolean>(false);
 
   useEffect(() => {
     const cargarDatos = async () => {
@@ -236,6 +236,29 @@ export const CRUD = () => {
                           <button
                             className="cursor-pointer bg-blue-500 border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-blue-600 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50 rounded-lg"
                             onClick={() =>
+                              navigate(`/categoria/subirImg/${cat.id}`)
+                            }
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={2}
+                              stroke="currentColor"
+                              className="w-5 h-5"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M3 8h3l2-3h8l2 3h3v11a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"
+                              />
+                              <circle cx="12" cy="13" r="3" />
+                            </svg>
+                          </button>
+
+                          <button
+                            className="cursor-pointer bg-blue-500 border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-blue-600 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50 rounded-lg"
+                            onClick={() =>
                               navigate("/categoria/editar", {
                                 state: { categoria: cat },
                               })
@@ -315,8 +338,8 @@ export const CRUD = () => {
         </div>
         {openProducto && (
           <div className="overflow-x-auto shadow rounded-lg w-full border border-black">
-  <table className="min-w-full bg-white text-center">
-    <thead className="bg-[#808080] text-gray-700 uppercase text-sm">
+            <table className="min-w-full bg-white text-center">
+              <thead className="bg-[#808080] text-gray-700 uppercase text-sm">
                 <tr>
                   <th className="py-3 px-4 border-b w-1/4">Título</th>
                   <th className="py-3 px-4 border-b w-1/4">Categoría</th>
@@ -450,8 +473,8 @@ export const CRUD = () => {
         </div>
         {openTags && ( // si toca la tags se despliega todo esto
           <div className="overflow-x-auto shadow rounded-lg w-full border border-black">
-  <table className="min-w-full bg-white text-center">
-    <thead className="bg-[#808080] text-gray-700 uppercase text-sm">
+            <table className="min-w-full bg-white text-center">
+              <thead className="bg-[#808080] text-gray-700 uppercase text-sm">
                 <tr>
                   <th className="py-3 px-4 border-b text-center">TÍTULO</th>
                   <th className="py-3 px-4 border-b text-center">ACCIONES</th>
