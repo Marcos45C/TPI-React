@@ -12,6 +12,7 @@ export const AnadirImgCategoria = () => {
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  
   const handleUpload = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -73,10 +74,6 @@ export const AnadirImgCategoria = () => {
           Subir imagen a categoría
         </h2>
 
-        <p className="text-sm text-gray-700">
-          ID de la categoría detectado: <b>{id}</b>
-        </p>
-
         {/* ARCHIVO */}
         <label className="block text-gray-700 font-medium">Imagen</label>
         <input
@@ -97,7 +94,6 @@ export const AnadirImgCategoria = () => {
             className="w-full h-40 object-cover rounded mt-4 border"
           />
         )}
-        
 
         {/* ERROR LOCAL */}
         {error && <p className="text-red-600 text-sm text-center">{error}</p>}
@@ -119,7 +115,7 @@ export const AnadirImgCategoria = () => {
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="w-full py-2 rounded bg-gray-300 text-gray-800 hover:bg-gray-400 transition"
+          className="w-full py-2 rounded bg-gray-400 text-gray-800 hover:bg-[#708090] transition"
         >
           Volver
         </button>
