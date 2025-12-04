@@ -107,7 +107,7 @@ export const CategoriaPage = () => {
               </div>
             </div>
             
-            <div className="border-t-4 border-black-600 w-90 mx-auto mb-9" />
+            <div className="border-t-4 border-black w-full max-w-xs mx-auto mb-9" />
 
             <Productos
               productos={productos}

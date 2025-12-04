@@ -150,10 +150,11 @@ export const DetalleProducto = () => {
              Control
          </Link>         
       )}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow pt-28">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow pt-20">
 
       {/**Boton para volver a listadoGeneral*/}
-      <nav className="flex items-center text-sm text-gray-500 mb-8">
+      <nav className="flex items-center text-sm text-gray-500 mb-8 mt-14 sm:mt-0">
+
           <button onClick={() => navigate("/")}
             className="flex items-center gap-2 text-gray-600 hover:text-red-600 font-medium transition-colors duration-200">
             
