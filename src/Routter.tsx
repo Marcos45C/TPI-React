@@ -7,6 +7,7 @@ import { FormularioProducto } from "./componentes/FormularioProducto";
 import { FormularioTag } from "./componentes/FormularioTag";
 import { AnadirTagsProducto } from "./componentes/AnadirTagsProducto";
 import { CategoriaPage } from "./CategoriaPage";
+import { RutaProtegida } from "./componentes/RutaProtegida";
 
 export const Routter = () => {
   return (
@@ -15,7 +16,13 @@ export const Routter = () => {
     
       <Route path="/detalle/:id" element={<DetalleProducto />} />
 
-      <Route path="/Crud" element={<CRUD />} />
+      <Route 
+      path="/Crud" 
+      element={
+        <RutaProtegida>
+      <CRUD />
+      </RutaProtegida>
+      } />
       {/* categorias creacion y post o put*/}
       <Route path="/categoria/nueva" element={<FormularioCategoria />} />
       <Route path="/categoria/editar" element={<FormularioCategoria />} />
