@@ -8,6 +8,12 @@ Permite a los usuarios(clientes) filtrar por categorías, ver detalles y agregar
 👨‍💻- Marcos Cerezo <br>
 👨‍💻- Lucas Rodríguez <br>
 
+### Instalaciones necesarias
+- router
+- npm install react-hot-toast, para el manejo de alertas
+- npm install @stripe/stripe-js @stripe/react-stripe-js
+- react form
+  
 ##  💻 Tecnologías Utilizadas
 
 * **React** (con Vite)
@@ -79,8 +85,4 @@ Integramos la API de Stripe en modo de pruebas, permitiendo simular el flujo de 
 ## 🔎 Búsqueda
 La página tiene una navegación fluida, permitiendo al usuario buscar por productos, categorias o descripción.
 
-### Instalaciones 
-- router
-- npm install react-hot-toast, para el manejo de alertas
-- npm install @stripe/stripe-js @stripe/react-stripe-js
-- react form
+
