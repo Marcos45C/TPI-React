@@ -137,43 +137,48 @@ export const CRUD = () => {
     navigate("/tags/nuevo");
   };
 
-  return (
-    <div className="p-6 bg-gray-50 min-h-screen max-w-full overflow-x-hidden">
+  return (<div className="p-6 bg-[#708090] min-h-screen max-w-full overflow-x-hidden">
       <div className="mb-4 flex justify-start">
         <button
           onClick={() => navigate("/")}
-          className="group flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-600 font-medium rounded-lg shadow-sm hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-all duration-200 active:scale-95">
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            strokeWidth={2} 
-            stroke="currentColor" 
-            className="w-5 h-5 transition-transform group-hover:-translate-x-1">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          className="group flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-600 font-medium rounded-lg shadow-sm hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-all duration-200 active:scale-95"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-5 h-5 transition-transform group-hover:-translate-x-1"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+            />
           </svg>
           Volver al Super
         </button>
       </div>
-      <h1 className="text-3xl font-bold mb-8 text-gray-800 text-center">
-        CRUD
+      <h1 className="text-3xl font-bold mb-8 text-black text-center">
+        Seccion de Administrador
       </h1>
       {/* cambie estilo aca para que se adapte a los telefonos y no sea imposible agregar nueva categoria , producto o tag */}
       <div className="flex flex-col sm:flex-row justify-center mb-6 gap-4">
         <button
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition"
+          className="bg-[#008B8B] hover:bg-[#00A0A0] text-white px-4 py-2 rounded shadow transition"
           onClick={CrearCategoria}
         >
           Nueva Categoría
         </button>
         <button
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition"
+          className="bg-[#008B8B] hover:bg-[#00A0A0] text-white px-4 py-2 rounded shadow transition"
           onClick={CrearProducto}
         >
           Nuevo Producto
         </button>
         <button
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition"
+          className="bg-[#008B8B] hover:bg-[#00A0A0] text-white px-4 py-2 rounded shadow transition"
           onClick={CrearTags}
         >
           Nuevo Tag
@@ -184,10 +189,10 @@ export const CRUD = () => {
       <section className="mb-12">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
           <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-semibold text-gray-700">Categorias</h2>
+            <h2 className="text-2xl font-semibold text-black">Categorias</h2>
             <button
               onClick={() => setOpenCategoria(!openCategoria)}
-              className={`cursor-pointer inline-block text-left px-4 py-2 font-semibold text-gray-700 transition-all duration-300
+              className={`cursor-pointer inline-block text-left px-4 py-2 font-semibold text-gray-900 transition-all duration-300
                             ${
                               openCategoria ? "opacity-40" : "opacity-100"
                             } hover:opacity-100`}
@@ -197,13 +202,19 @@ export const CRUD = () => {
           </div>
         </div>
         {openCategoria && ( // si toca la categoria se despliega todo esto
-          <div className="overflow-x-auto shadow rounded-lg w-full">
-            <table className="min-w-full bg-white border border-gray-200 rounded-lg text-center">
-              <thead className="bg-gray-100 text-gray-700 uppercase text-sm">
+          <div className="overflow-x-auto shadow rounded-lg w-full border border-black">
+            <table className="min-w-full bg-white text-center">
+              <thead className="bg-[#808080] text-gray-700 uppercase text-sm">
                 <tr>
-                  <th className="py-3 px-4 border-b text-center w-1/4 ">TITULO</th>
-                  <th className="py-3 px-4 border-b text-center w-2/4">DESCRIPCION</th>
-                  <th className="py-3 px-4 border-b text-center w-1/4">ACCIONES</th>
+                  <th className="bg-[#808080] py-3 px-4 border-b text-center w-1/4 ">
+                    TITULO
+                  </th>
+                  <th className="py-3 px-4 border-b text-center w-2/4">
+                    DESCRIPCION
+                  </th>
+                  <th className="py-3 px-4 border-b text-center w-1/4">
+                    ACCIONES
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -211,15 +222,15 @@ export const CRUD = () => {
                   categoriass.map((cat) => (
                     <tr
                       key={cat.id}
-                      className="hover:bg-gray-50 transition text-gray-800"
+                      className="hover:bg-[#66BBBB] transition text-gray-800"
                     >
-                      <td className="py-3 px-4 border-b font-semibold w-1/4 truncate">
+                      <td className="bg-[#DCDCDC] py-3 px-4 border-b font-semibold w-1/4 truncate">
                         {cat.title}
                       </td>
-                      <td className="py-3 px-4 border-b w-2/4 break-words  whitespace-normal">
+                      <td className="bg-[#DCDCDC] py-3 px-4 border-b w-2/4 break-words  whitespace-normal">
                         {cat.description}
                       </td>
-                      <td className="py-3 px-4 border-b text-center w-1/4">
+                      <td className="bg-[#DCDCDC] py-3 px-4 border-b text-center w-1/4">
                         <div className="inline-flex gap-2">
                           <button
                             className="cursor-pointer bg-blue-500 border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-blue-600 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50 rounded-lg"
@@ -289,10 +300,10 @@ export const CRUD = () => {
       <section>
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
           <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-semibold text-gray-700">Productos</h2>
+            <h2 className="text-2xl font-semibold text-black">Productos</h2>
             <button
               onClick={() => setOpenProducto(!openProducto)}
-              className={`cursor-pointer inline-block text-left px-4 py-2 font-semibold text-gray-700 transition-all duration-300
+              className={`cursor-pointer inline-block text-left px-4 py-2 font-semibold text-gray-900 transition-all duration-300
                             ${
                               openProducto ? "opacity-40" : "opacity-100"
                             } hover:opacity-100`}
@@ -302,9 +313,9 @@ export const CRUD = () => {
           </div>
         </div>
         {openProducto && (
-          <div className="overflow-x-auto shadow rounded-lg ">
-            <table className="min-w-full bg-white border border-gray-200 rounded-lg text-center">
-              <thead className="bg-gray-100 text-gray-700 uppercase text-sm">
+          <div className="overflow-x-auto shadow rounded-lg w-full border border-black">
+  <table className="min-w-full bg-white text-center">
+    <thead className="bg-[#808080] text-gray-700 uppercase text-sm">
                 <tr>
                   <th className="py-3 px-4 border-b w-1/4">Título</th>
                   <th className="py-3 px-4 border-b w-1/4">Categoría</th>
@@ -319,19 +330,19 @@ export const CRUD = () => {
                       key={prod.id}
                       className="hover:bg-gray-50 transition text-gray-800 "
                     >
-                      <td className="py-3 px-2 border-b font-semibold">
+                      <td className="bg-[#DCDCDC] py-3 px-2 border-b font-semibold">
                         {prod.title}
                       </td>
 
-                      <td className="py-3 px-2 border-b">
+                      <td className="bg-[#DCDCDC] py-3 px-2 border-b">
                         {categoriass.find((c) => c.id === prod.category_id)
                           ?.title || "Sin categoría"}
                       </td>
 
-                      <td className="py-3 px-2 border-b text-green-600 font-medium">
+                      <td className="bg-[#DCDCDC] py-3 px-2 border-b text-green-600 font-medium">
                         ${prod.price ?? "N/A"}
                       </td>
-                      <td className="py-3 px-2 border-b ">
+                      <td className="bg-[#DCDCDC] py-3 px-2 border-b ">
                         <div className="flex justify-center gap-2">
                           <button
                             className="cursor-pointer bg-green-500 border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-green-600 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50 rounded-lg"
@@ -424,10 +435,10 @@ export const CRUD = () => {
       <section className="mt-12">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
           <div className="flex items-center gap-4">
-            <h2 className="text-2xl font-semibold text-gray-700">Tags</h2>
+            <h2 className="text-2xl font-semibold text-black">Tags</h2>
             <button
               onClick={() => setOpenTags(!openTags)}
-              className={`cursor-pointer inline-block text-left px-4 py-2 font-semibold text-gray-700 transition-all duration-300
+              className={`cursor-pointer inline-block text-left px-4 py-2 font-semibold text-gray-900 transition-all duration-300
                             ${
                               openTags ? "opacity-40" : "opacity-100"
                             } hover:opacity-100`}
@@ -437,9 +448,9 @@ export const CRUD = () => {
           </div>
         </div>
         {openTags && ( // si toca la tags se despliega todo esto
-          <div className="overflow-x-auto shadow rounded-lg w-full">
-            <table className="min-w-full bg-white border border-gray-200 rounded-lg">
-              <thead className="bg-gray-100 text-gray-700 uppercase text-sm">
+          <div className="overflow-x-auto shadow rounded-lg w-full border border-black">
+  <table className="min-w-full bg-white text-center">
+    <thead className="bg-[#808080] text-gray-700 uppercase text-sm">
                 <tr>
                   <th className="py-3 px-4 border-b text-center">TÍTULO</th>
                   <th className="py-3 px-4 border-b text-center">ACCIONES</th>
@@ -452,10 +463,10 @@ export const CRUD = () => {
                       key={tag.id}
                       className="hover:bg-gray-50 transition text-gray-800"
                     >
-                      <td className="py-3 px-4 border-b text-center font-semibold">
+                      <td className="bg-[#DCDCDC] py-3 px-4 border-b text-center font-semibold">
                         {tag.title}
                       </td>
-                      <td className="py-3 px-4 border-b text-center space-x-2">
+                      <td className="bg-[#DCDCDC] py-3 px-4 border-b text-center space-x-2">
                         <div className="inline-flex gap-2">
                           <button
                             className="cursor-pointer bg-blue-500 border border-gray-200 px-3 py-2 text-gray-700 transition-colors hover:bg-blue-600 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:pointer-events-auto disabled:opacity-50 rounded-lg"
@@ -527,4 +538,4 @@ export const CRUD = () => {
       />
     </div>
   );
-};
+}
