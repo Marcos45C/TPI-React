@@ -225,14 +225,18 @@ export const DetalleProducto = () => {
                     {producto.tags && producto.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2 mb-8">
                             {producto.tags.map((tag: any, index: number) => (
-                                <span 
-                                key={index} 
-                                className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold uppercase">
-                                    #{tag.title} 
-                                </span>
-                             ) 
-                              ) }
-                        </div>
+                                                     <span
+                                                       key={index}
+                                                       className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border ${
+                                                         tag.title.toLowerCase().includes("descuento")
+                                                           ? "text-red-600 bg-red-50 border-red-100" 
+                                                           : "text-blue-600 bg-blue-50 border-blue-100"
+                                                       }`}
+                                                     >
+                                                       #{tag.title}
+                                                     </span>
+                                                   ))}
+                                                 </div>
                     )}
 
                     {/* Botones de Acción */}
@@ -255,7 +259,7 @@ export const DetalleProducto = () => {
       </div>
       {/**el carrito */}
       <Carrito compraProducto={compraProducto}/>
-      {/* Footer al final */}
+      {/* Footer al final*/}
       <Footer />
     </div>
             
