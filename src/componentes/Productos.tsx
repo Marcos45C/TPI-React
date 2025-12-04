@@ -28,14 +28,14 @@ export const Productos = ({
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-gray-800">Productos</h2>
       {filteredProducts.length > 0 ? (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
           {filteredProducts.map((prod) => (
             <li
               key={prod.id}
               className="max-w-96 shadow-lg bg-gray-100 h-full flex flex-col rounded-lg overflow-hidden transition hover:scale-[1.02]"
             >
               <div
-                className="relative cursor-pointer border-3 border-white hover:border-red-600"
+                className="relative cursor-pointer h-32 sm:h-52 w-full bg-white flex items-center justify-center p-2"
                 onClick={() => irADetalle(prod.id)}
               >
                 <img
@@ -45,14 +45,17 @@ export const Productos = ({
                       : imgDefecto // agrege la imagen por defecto
                   }
                   alt={prod.title}
-                  className="aspect-square w-full mix-blend-multiply brightness-110 object-cover"
+                  className="h-full w-full object-contain"
                 />  
               </div>
       
               <div className="flex-1 p-3 bg-white flex flex-col justify-between">
-                <h2 className="text-xl font-bold mb-1">{prod.title}</h2>
+                <h2 className="text-sm sm:text-lg font-bold text-gray-800 leading-tight mb-1 line-clamp-2">
+                  {prod.title}
+                </h2>
+                {/* Tags: Ocultos en móvil (hidden) para limpiar la vista, visibles en PC (sm:flex) */}
                  {prod.tags && prod.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-2 mb-3">
+                  <div className="hidden sm:flex flex-wrap gap-1 mt-1 mb-2">
                     {prod.tags.map((tag: any, index: number) => (
                       <span 
                         key={index} 
@@ -63,7 +66,10 @@ export const Productos = ({
                     ))}
                   </div>
                 )}
-                <p className="text-gray-500 mb-2">{prod.description}</p>
+                {/*corta el texto si es muy largo con line-clamp-2*/}
+                <p className="text-xs sm:text-sm text-gray-500 mb-2 line-clamp-2">
+                  {prod.description}
+                </p>
                 {prod.price && (
                   <div className="text-2xl font-semibold text-green-600">
                     ${prod.price}
@@ -71,7 +77,7 @@ export const Productos = ({
                 )}
                 <button
                   onClick={() => compraProduc(prod)}
-                  className="mt-3 bg-gray-200 text-black px-3 py-2 rounded border border-stone-300 hover:bg-red-700 hover:text-white hover:border-transparent transition duration-300"
+                  className="w-full bg-gray-100 text-gray-800 text-xs sm:text-sm font-bold px-3 py-2 rounded-lg border border-gray-200 hover:bg-red-600 hover:text-white hover:border-red-600 transition-colors duration-200 active:scale-95"
                 >
                   Agregar al carrito
                 </button>

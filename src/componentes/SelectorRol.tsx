@@ -53,7 +53,11 @@ export const SelectorRol = () => {
             !esAdmin ? 'bg-green-600 text-white border-green-600' : 'bg-white text-gray-400 border-gray-200 hover:border-green-500 hover:text-green-600'
             }`}
             title="Cambiar a Cliente">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+            className="h-4 w-4" 
+            fill="none"
+             viewBox="0 0 24 24" 
+             stroke="currentColor">
                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
         </button>
@@ -108,7 +112,11 @@ export const SelectorRol = () => {
                   className="w-full border-2 border-gray-200 rounded-lg p-3 outline-none focus:border-red-500 transition-colors"/>
                 {error && (
                   <p className="text-red-500 text-xs mt-2 font-medium flex items-center gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" 
+                    width="21" 
+                    height="21" 
+                    viewBox="0 0 24 24" 
+                    aria-Hidden="true">
                     <circle cx="12" cy="12" r="11" fill="#D32F2F"/>
                     <rect x="4.5" y="9" width="15" height="3" transform="rotate(-45 12 12)" fill="#FFF"/> 
                    </svg>
